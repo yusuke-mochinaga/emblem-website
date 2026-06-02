@@ -964,6 +964,7 @@ h2, .h2 {
   grid-template-rows: 1fr 1fr;
   height: 100svh;
   min-height: 520px;
+  margin-bottom: 0;
 }
 
 .tech-feat {
@@ -1084,6 +1085,7 @@ h2, .h2 {
 
 .tech-archive {
   padding-bottom: 0;
+  margin-top: 0;
 }
 
 .tech-archive__items {
