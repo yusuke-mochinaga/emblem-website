@@ -1054,6 +1054,16 @@ h2, .h2 {
   text-transform: uppercase;
 }
 
+/* video in featured grid */
+.tech-feat__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
+
 /* ============================================================
    TECHNOLOGY PAGE — Scroll List
    ============================================================ */
@@ -1119,6 +1129,14 @@ h2, .h2 {
   transition: opacity 0.25s ease;
 }
 .tech-arc-item:hover img { opacity: 1; }
+.tech-arc-item__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
 .tech-arc-item__overlay {
   position: absolute;
   inset: 0;
