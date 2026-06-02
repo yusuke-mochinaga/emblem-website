@@ -1186,8 +1186,8 @@ h2, .h2 {
 .tech-next {
   background: #000;
   border-top: 1px solid #000;
-  height: var(--arc-item-h);
-  min-height: var(--arc-item-h);
+  height: auto;
+  min-height: calc(var(--arc-item-h) - 80px);
   flex-shrink: 0;
   display: flex;
   align-items: center;
