@@ -843,6 +843,9 @@ h2, .h2 {
   color: var(--white);
   padding: 48px 0 32px;
 }
+.tech-next + .footer {
+  padding-top: 0;
+}
 .footer__inner {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -1078,6 +1081,10 @@ h2, .h2 {
 
 /* 共通の写真高さ（全行で統一） */
 :root { --arc-item-h: 400px; }
+
+.tech-archive {
+  padding-bottom: 0;
+}
 
 .tech-archive__items {
   display: flex;
