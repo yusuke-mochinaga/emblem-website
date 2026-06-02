@@ -1546,6 +1546,20 @@ h2, .h2 {
 .roles-column {
   display: flex;
   flex-direction: column;
+  padding-right: 24px;
+}
+
+.roles-column:first-child {
+  border-right: 1px solid var(--stone-200);
+  padding-right: 48px;
+}
+
+.roles-column-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 24px;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 .roles-list {
@@ -1728,6 +1742,14 @@ h2, .h2 {
   .news-card { width: 80vw; }
   .news-carousel-wrap { width: 92%; }
   .roles-container { grid-template-columns: 1fr; gap: 32px; }
+  .roles-column {
+    padding-right: 0;
+    border-right: none;
+  }
+  .roles-column:first-child {
+    border-right: none;
+    padding-right: 0;
+  }
   .roles-list { grid-template-columns: 1fr; }
   .roles-note { grid-column: span 1; }
 
