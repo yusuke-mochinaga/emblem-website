@@ -1743,6 +1743,9 @@ h2, .h2 {
   /* Technology Archive: モバイルは高さ縮小 */
   :root { --arc-item-h: 200px; }
 
+  /* NEXT COMING: モバイルはギャップを小さくする */
+  .tech-next { min-height: calc(var(--arc-item-h) - 40px); }
+
   /* Home Tech section: モバイルは縦積み */
   .home-tech__inner {
     grid-template-columns: 1fr;
