@@ -416,6 +416,7 @@ h2, .h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   opacity: 1;
 }
 
@@ -1754,10 +1755,35 @@ h2, .h2 {
   /* Hero: モバイルは縦1列 */
   .hero__content--split {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
     padding-bottom: 40px;
   }
-  .hero__right { display: none; } /* モバイルはミッションテキスト非表示 */
+  .hero__video {
+    object-position: calc(center + 150px);
+  }
+  .hero__title {
+    word-spacing: 9999px;
+    font-size: clamp(36px, 9vw, 56px);
+  }
+  .hero__right {
+    display: block;
+    padding-bottom: 0;
+  }
+  .hero__right-title {
+    font-size: clamp(18px, 5vw, 26px);
+    margin-bottom: 16px;
+  }
+  .hero__right-lead {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .hero__right-body {
+    gap: 12px;
+  }
+  .hero__right-body p {
+    font-size: 12px;
+    line-height: 1.8;
+  }
   .hero__content { padding: 0 20px 40px; }
 
   /* Video section */
