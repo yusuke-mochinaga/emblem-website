@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   container.innerHTML = recent.map(item => `
     <div class="news-card fade-in">
-      <div class="news-card__img news-card__img--icon">
+      <div class="news-card__img news-card__img--photo">
         <div style="width:100%;height:100%;background:#333;display:flex;align-items:center;justify-content:center;color:#666;font-size:24px;">📰</div>
       </div>
       <div class="news-card__body">
@@ -24,5 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   `).join('');
 
   // 生成後にfade-inを再初期化
-  if (typeof initFadeIn === 'function') initFadeIn();
+  if (typeof initFadeIn === 'function') {
+    setTimeout(() => initFadeIn(), 0);
+  }
 });
