@@ -308,6 +308,7 @@ h2, .h2 {
   display: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 5px;
   width: 28px;
   height: 28px;
@@ -315,15 +316,21 @@ h2, .h2 {
   border: none;
   margin-left: auto;
   cursor: pointer;
+  padding: 0;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 101;
 }
 .nav__hamburger span {
-  display: block !important;
-  height: 1.5px !important;
-  background: var(--white) !important;
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--ink);
   border-radius: 1px;
   transition: all 200ms ease;
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 1;
+  visibility: visible;
 }
 
 .nav__hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -1729,11 +1736,18 @@ h2, .h2 {
 
   .nav__links,
   .nav__right { display: none; }
-  .nav__hamburger { display: flex; }
+  .nav__hamburger {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 101;
+  }
   .nav__hamburger span {
-    background: var(--ink) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+    display: block;
+    background: var(--ink);
+    opacity: 1;
+    visibility: visible;
   }
   .nav__inner { padding: 0 20px; }
 
