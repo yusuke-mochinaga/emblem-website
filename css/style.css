@@ -319,7 +319,7 @@ h2, .h2 {
 .nav__hamburger span {
   display: block;
   height: 1.5px;
-  background: var(--ink);
+  background: var(--ink) !important;
   border-radius: 1px;
   transition: all 200ms ease;
 }
@@ -1728,6 +1728,11 @@ h2, .h2 {
   .nav__links,
   .nav__right { display: none; }
   .nav__hamburger { display: flex; }
+  .nav__hamburger span {
+    background: var(--ink) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
   .nav__inner { padding: 0 20px; }
 
   /* Hero: モバイルは縦1列 */
