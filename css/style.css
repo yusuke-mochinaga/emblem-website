@@ -1761,9 +1761,16 @@ h2, .h2 {
   .hero__video {
     object-position: 40%;
   }
+  .hero__left {
+    align-items: flex-end;
+    text-align: right;
+  }
+  .hero__badge {
+    align-self: flex-end;
+  }
   .hero__title {
     word-spacing: 9999px;
-    font-size: clamp(36px, 9vw, 56px);
+    font-size: clamp(54px, 13.5vw, 84px);
   }
   .hero__right {
     display: block;
