@@ -77,16 +77,45 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
 (function initHamburger() {
   const btn = document.querySelector('.nav__hamburger');
   const overlay = document.querySelector('.nav__overlay');
-  if (!btn || !overlay) return;
+
+  console.log('=== HAMBURGER DEBUG ===');
+  console.log('btn found:', !!btn);
+  console.log('overlay found:', !!overlay);
+
+  if (!btn || !overlay) {
+    console.error('Hamburger or overlay not found in DOM');
+    return;
+  }
+
+  console.log('btn element:', btn);
+  console.log('btn classes:', btn.className);
+  console.log('btn computed style display:', getComputedStyle(btn).display);
+  console.log('btn computed style visibility:', getComputedStyle(btn).visibility);
 
   // Force hamburger span visibility
   const spans = btn.querySelectorAll('span');
-  spans.forEach(span => {
+  console.log('spans found:', spans.length);
+
+  spans.forEach((span, i) => {
+    console.log(`Span ${i} before:`, {
+      display: getComputedStyle(span).display,
+      background: getComputedStyle(span).background,
+      opacity: getComputedStyle(span).opacity,
+      visibility: getComputedStyle(span).visibility
+    });
+
     span.style.display = 'block';
     span.style.background = 'white';
     span.style.opacity = '1';
     span.style.visibility = 'visible';
     span.style.height = '1.5px';
+
+    console.log(`Span ${i} after:`, {
+      display: span.style.display,
+      background: span.style.background,
+      opacity: span.style.opacity,
+      visibility: span.style.visibility
+    });
   });
 
   btn.addEventListener('click', () => {
