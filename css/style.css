@@ -1768,9 +1768,9 @@ h2, .h2 {
   .hero__badge {
     align-self: flex-end;
   }
-  .hero__title {
+  .display.hero__title {
     word-spacing: 9999px;
-    font-size: clamp(54px, 13.5vw, 84px);
+    font-size: clamp(54px, 20vw, 84px) !important;
   }
   .hero__right {
     display: block;
