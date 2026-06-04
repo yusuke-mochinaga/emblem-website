@@ -1,140 +1,357 @@
 /* ============================================================
    Emblem — tech.js
-   technology.html のArchive Gridを自動生成するファイル。
+   Technology ページのフルスクリーンセクションを管理するファイル。
 
-   Featured Grid（上位3件）は technology.html のHTMLを直接編集する。
-   Archive Grid（4件目以降）はこのファイルが自動生成する。
+   【コンテンツを追加・更新するには】
+   TECH_ENTRIES 配列を編集するだけ。
+   - 新しいエントリを追加 → 配列に追記
+   - 表示/非表示の切り替え → visible: true/false を変更
+   - 素材の差し替え → media.src を変更
 
-   【試験を追加するには】
-   1. 下の TECH_TESTS 配列の先頭に新しいオブジェクトを追加
-   2. technology.html の Featured Grid を手動で更新
-      （左大枠=最新、右上=2番目、右下=3番目）
-   3. technology/ フォルダに新しい試験の個別ページHTMLを追加
+   【表示制御変数】
+   SHOW_TECH_4 / SHOW_TECH_5 を true にすると④⑤が表示される。
+   SHOW_TEAM と同じ方式。
    ============================================================ */
 
-const TECH_TESTS = [
+/* ── 表示制御 ─────────────────────────────────────────────── */
+const SHOW_TECH_4 = false; // ← true で④「飛行する視界」を公開
+const SHOW_TECH_5 = false; // ← true で⑤「自由な飛行」を公開
+
+/* ── コンテンツデータ ──────────────────────────────────────
+   media.type: 'video' | 'photo'
+   media.src:  素材のパス。未入手の場合は null（プレースホルダー表示）
+   link:       「続きを読む」のリンク先。個別ページがあれば設定。
+   ─────────────────────────────────────────────────────────── */
+const TECH_ENTRIES = [
   {
-    slug: "hands-free",
-    date_jp: "2026年",
-    date_en: "2026",
-    title_jp: "ハンズフリーホバリング",
-    title_en: "Hands-free Hovering",
-    video: "assets/videos/hands-free.mp4",
-    photo: null,
-    is_latest: true,
-    is_planned: false
+    id: 'field',
+    num: '01',
+    visible: true,
+    media: {
+      type: 'photo',
+      src: null,
+      alt: '加賀市試験フィールド 上空からの俯瞰写真'
+    },
+    date_jp: '2025年10月',
+    date_en: 'Oct 2025',
+    title_jp: '人が空を飛ぶフィールド',
+    title_en: 'A Field for Human Flight',
+    body_jp: `飛行機には空港があります。
+自動車には道路があります。
+では、人が空を飛ぶためには何が必要でしょうか。
+私たちは、その答えをつくろうとしています。
+東京で設計された飛行システムは、北陸の実証フィールドへ運ばれます。そこでエンジンに火が入り、人が装着し、空へ挑みます。
+Human Flightは、まだ存在しない産業です。
+だから私たちは、飛行装置だけでなく、その未来が生まれる場所そのものをつくっています。`,
+    body_en: `Airplanes have airports. Cars have roads.
+But what does it take for humans to fly?
+We are building the answer.
+Our flight systems are designed in Tokyo and brought to our test field in Hokuriku, where engines ignite, pilots suit up, and new possibilities take flight.
+Human Flight is not yet an industry.
+That is why we are building more than a flying machine.
+We are building the place where its future can begin.`,
+    link: null
   },
   {
-    slug: "stable-hovering",
-    date_jp: "2026年4月",
-    date_en: "Apr 2026",
-    title_jp: "安定したホバリング",
-    title_en: "Stable Hovering",
-    video: "assets/videos/hovering.mp4",
-    photo: null,
-    is_latest: false,
-    is_planned: false
+    id: 'body',
+    num: '02',
+    visible: true,
+    media: {
+      type: 'video',
+      src: null,
+      alt: '安定したホバリング試験映像'
+    },
+    date_jp: '2026年3月',
+    date_en: 'Mar 2026',
+    title_jp: '身体と飛行',
+    title_en: 'Flight Should Follow the Body',
+    body_jp: `私たちは、操縦桿を巧みに扱うことが飛行の本質だとは考えていません。
+人は歩くとき、自転車に乗るとき、自分の身体を意識的に操作しているわけではありません。身体の動きそのものが、移動へとつながっています。
+飛行もまた同じであるべきだと考えています。
+私たちが目指すのは、人間が機械を操縦する飛行ではなく、人間の身体の延長として成立する飛行です。
+飛ぶための技術ではなく、自然に飛べる身体をつくること。
+その挑戦がここから始まります。`,
+    body_en: `We do not believe that the essence of flight lies in mastering a control stick.
+When people walk or ride a bicycle, they are not consciously operating their bodies as machines. Movement emerges naturally from the body itself.
+We believe flight should work the same way.
+Our goal is not a form of flight in which humans operate machines. It is a form of flight that becomes an extension of the human body.
+We are not simply developing technology for flying.
+We are exploring what it means to create a body that can fly naturally.
+That journey begins here.`,
+    link: 'technology/hands-free.html'
   },
   {
-    slug: "hunging-start",
-    date_jp: "2025年9月",
-    date_en: "Sep 2025",
-    title_jp: "ホバリング開始",
-    title_en: "Hovering Start",
-    video: "assets/videos/hunging_start.mp4",
-    photo: null,
-    is_latest: false,
-    is_planned: false
+    id: 'hands',
+    num: '03',
+    visible: true,
+    media: {
+      type: 'video',
+      src: null,
+      alt: 'ハンズフリーホバリング映像'
+    },
+    date_jp: '2026年6月',
+    date_en: 'Jun 2026',
+    title_jp: '身体を解放する',
+    title_en: 'Freeing the Hands',
+    body_jp: `手は、人間にとって最も重要な道具です。
+つかむ。支える。修理する。救助する。
+空中で活動するために本当に重要なのは、飛ぶことそのものではありません。飛んだ先で何ができるかです。
+私たちは、飛行中も操縦に意識を向け続ける状態から、人が本来の仕事に集中できる状態への移行を目指しています。
+ハンズフリー飛行は、そのための一歩です。
+それは飛行技術の進歩ではありません。人間の自由度を増やすための進歩です。`,
+    body_en: `Hands are humanity's most important tools.
+To grasp. To support. To repair. To rescue.
+When operating in the air, what matters most is not the act of flying itself. It is what becomes possible after flight.
+Our goal is to move beyond a state where attention is constantly devoted to control, and toward one where people can focus on the work that truly matters.
+Hands-free flight is one step in that direction.
+It is not simply an advance in flight technology.
+It is an advance in human freedom.`,
+    link: 'technology/hands-free.html'
   },
   {
-    slug: "first-flight",
-    date_jp: "2025年6月",
-    date_en: "Jun 2025",
-    title_jp: "初フライト",
-    title_en: "First Flight",
-    video: "assets/videos/first_flight.mp4",
-    photo: null,
-    is_latest: false,
-    is_planned: false
+    id: 'vision',
+    num: '04',
+    visible: SHOW_TECH_4,
+    media: {
+      type: 'photo',
+      src: null,
+      alt: 'REKKIEゴーグルを着用した飛行写真'
+    },
+    date_jp: '2026年 予定',
+    date_en: 'Coming 2026',
+    title_jp: '飛行する視界',
+    title_en: 'Vision in Flight',
+    body_jp: `空へ上がると、人は世界を違う形で見るようになります。
+遠くまで見える。広く見える。そして、これまで見えなかったつながりが見える。
+飛行は、移動手段であると同時に、人間の知覚を拡張する技術でもあります。
+私たちは、身体と飛行を結びつけるだけでなく、身体と情報との新しい関係を探究しています。
+必要な情報が、必要な瞬間に、自然に視界へ流れ込む。情報を探しにいくのではなく、情報の方が身体に寄り添う。
+空を飛びながら、世界を見続けることができる。それは、飛行する身体のための新しい視界です。`,
+    body_en: `As we rise into the air, we begin to see the world differently.
+Farther. Wider. And with connections that were previously invisible.
+Flight is not only a means of movement. It is also a technology that expands human perception.
+Our work is not only about connecting the body to flight, but also about exploring a new relationship between the body and information.
+The right information flows naturally into view, at the moment it is needed. Information no longer needs to be searched for. Instead, it moves closer to the body.
+A person can remain immersed in the world while flying.
+It is a new vision for a flying body.`,
+    link: null
   },
   {
-    slug: "system-integration",
-    date_jp: "2024年11月",
-    date_en: "Nov 2024",
-    title_jp: "システム統合",
-    title_en: "System Integration",
-    video: null,
-    photo: null,
-    is_latest: false,
-    is_planned: false
-  },
-  {
-    slug: null,
-    date_jp: "2026年 予定",
-    date_en: "2026 Planned",
-    title_jp: "ジップライン飛行",
-    title_en: "Zip-line Flight",
-    video: null,
-    photo: null,
-    is_latest: false,
-    is_planned: true
+    id: 'free',
+    num: '05',
+    visible: SHOW_TECH_5,
+    media: {
+      type: 'video',
+      src: null,
+      alt: 'フリーフライト映像'
+    },
+    date_jp: '2026年 予定',
+    date_en: 'Coming 2026',
+    title_jp: '自由な飛行',
+    title_en: 'Free Flight',
+    body_jp: `人は長い間、地面と共に生きてきました。
+道路に沿って移動し、階段を上り、橋を渡る。私たちの身体は、常に地形の制約を受けています。
+飛行は、その関係を変えます。
+前へ進むだけでなく、上へ行くことができる。迂回するのではなく、越えることができる。地形に従うのではなく、空間そのものを使うことができる。
+私たちが追い求めているのは、単なる飛行ではありません。
+人が三次元空間を自由に使うための、新しい身体です。`,
+    body_en: `For most of human history, movement has been shaped by the ground beneath our feet.
+Roads. Stairs. Bridges. Our bodies have always followed the terrain.
+Flight changes that relationship.
+Not only forward, but upward. Not around, but across. Not constrained by geography, but able to use space itself.
+What we are pursuing is more than flight.
+It is a new body for a three-dimensional world.`,
+    link: null
   }
 ];
 
-/* ---------- technology.html 用: Archive Grid を生成 ---------- */
-(function renderArchiveGrid() {
-  const container = document.getElementById('archiveItems');
+/* ── DOM生成 ────────────────────────────────────────────────── */
+
+/* visible=true のエントリのみ抽出 */
+const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
+
+/* メインセクション群を生成 */
+(function buildSections() {
+  const container = document.getElementById('techSections');
   if (!container) return;
 
-  // 4件目以降（index 3以降）をArchiveに表示
-  const archiveTests = TECH_TESTS.slice(3);
+  container.innerHTML = visibleEntries.map((entry, index) => {
 
-  container.innerHTML = archiveTests.map(test => {
-    // Next Coming の場合
-    if (test.is_planned) {
-      return `
-        <div class="tech-arc-item tech-arc-item--next-coming">
-          <div class="tech-arc-item__next-placeholder" aria-hidden="true">?</div>
-          <div class="tech-arc-item__overlay"></div>
-          <div class="tech-arc-item__meta">
-            <p class="tech-arc-item__date" data-jp="Next" data-en="Next">Next</p>
-            <h3 class="tech-arc-item__title" data-jp="${test.title_jp}" data-en="${test.title_en}">${test.title_jp}</h3>
-            <p class="tech-arc-item__date" data-jp="${test.date_jp}" data-en="${test.date_en}">${test.date_jp}</p>
-          </div>
-        </div>
-      `;
+    /* 素材エリア: src があれば video/img、なければプレースホルダー */
+    let mediaHTML = '';
+    if (entry.media.src) {
+      if (entry.media.type === 'video') {
+        mediaHTML = `
+          <video class="tech-sec__media" autoplay muted loop playsinline
+                 preload="metadata" aria-hidden="true">
+            <source src="${entry.media.src}" type="video/mp4">
+          </video>`;
+      } else {
+        mediaHTML = `
+          <img class="tech-sec__media" src="${entry.media.src}"
+               alt="${entry.media.alt}" loading="${index === 0 ? 'eager' : 'lazy'}">`;
+      }
+    } else {
+      /* プレースホルダー: 素材未入手の場合 */
+      const icon = entry.media.type === 'video'
+        ? `<div class="tech-sec__ph-play"><div class="tech-sec__ph-tri"></div></div>`
+        : `<div class="tech-sec__ph-img">📷</div>`;
+      mediaHTML = `
+        <div class="tech-sec__placeholder">
+          ${icon}
+          <p class="tech-sec__ph-label">${entry.media.type.toUpperCase()} PLACEHOLDER</p>
+          <p class="tech-sec__ph-desc">${entry.media.alt}</p>
+        </div>`;
     }
 
-    // 通常の試験（動画あり）
-    if (test.video) {
-      return `
-        <a href="technology/${test.slug}.html" class="tech-arc-item">
-          <video class="tech-arc-item__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-            <source src="${test.video}" type="video/mp4">
-          </video>
-          <div class="tech-arc-item__overlay"></div>
-          <div class="tech-arc-item__meta">
-            <p class="tech-arc-item__date" data-jp="${test.date_jp}" data-en="${test.date_en}">${test.date_jp}</p>
-            <h3 class="tech-arc-item__title" data-jp="${test.title_jp}" data-en="${test.title_en}">${test.title_jp}</h3>
-            <span class="tech-arc-item__arrow">→</span>
-          </div>
-        </a>
-      `;
-    }
+    /* 「続きを読む」リンク */
+    const linkHTML = entry.link
+      ? `<a href="${entry.link}" class="tech-sec__link tech-sec__anim tech-sec__anim--body"
+            data-jp="続きを読む →" data-en="Read more →">続きを読む →</a>`
+      : '';
 
-    // 写真のみ（または素材なし）の試験
     return `
-      <a href="technology/${test.slug}.html" class="tech-arc-item">
-        <div style="position:absolute;inset:0;background:#1a1a1a;display:flex;align-items:center;justify-content:center;color:#444;font-size:10px;letter-spacing:.1em;text-transform:uppercase;">Photo</div>
-        <div class="tech-arc-item__overlay"></div>
-        <div class="tech-arc-item__meta">
-          <p class="tech-arc-item__date" data-jp="${test.date_jp}" data-en="${test.date_en}">${test.date_jp}</p>
-          <h3 class="tech-arc-item__title" data-jp="${test.title_jp}" data-en="${test.title_en}">${test.title_jp}</h3>
-          <span class="tech-arc-item__arrow">→</span>
+      <section class="tech-sec" id="tech-sec-${entry.id}"
+               data-index="${index}" data-id="${entry.id}">
+        ${mediaHTML}
+        <div class="tech-sec__overlay"></div>
+        <div class="tech-sec__content">
+          <p class="tech-sec__num tech-sec__anim tech-sec__anim--num"
+             data-jp="${entry.num} — Technology"
+             data-en="${entry.num} — Technology">${entry.num} — Technology</p>
+
+          <!-- タイトル: 日本語と英語を縦に重ねて表示 -->
+          <h2 class="tech-sec__title tech-sec__anim tech-sec__anim--title"
+              data-jp="${entry.title_jp}"
+              data-en="${entry.title_jp}">${entry.title_jp}</h2>
+          <p class="tech-sec__title-en tech-sec__anim tech-sec__anim--title-en"
+             data-jp="${entry.title_en}"
+             data-en="${entry.title_en}">${entry.title_en}</p>
+
+          <!-- 本文 -->
+          <p class="tech-sec__body tech-sec__anim tech-sec__anim--body"
+             data-jp="${entry.body_jp.replace(/`/g, '&#96;').replace(/"/g, '&quot;').replace(/\n/g, '<br>')}"
+             data-en="${entry.body_en.replace(/`/g, '&#96;').replace(/"/g, '&quot;').replace(/\n/g, '<br>')}"
+             data-html="true"
+             >${entry.body_jp.replace(/\n/g, '<br>')}</p>
+
+          <!-- 日付 -->
+          <p class="tech-sec__date tech-sec__anim tech-sec__anim--body"
+             data-jp="${entry.date_jp}"
+             data-en="${entry.date_en}">${entry.date_jp}</p>
+
+          ${linkHTML}
         </div>
-      </a>
-    `;
+        <div class="tech-sec__scroll-ind" aria-hidden="true">
+          <div class="tech-sec__scroll-line"></div>
+          <span class="tech-sec__scroll-label">SCROLL</span>
+        </div>
+      </section>`;
   }).join('');
+
+  /* 最後のセクションにlastクラスを付与（スクロールインジケーターを非表示に） */
+  const allSections = container.querySelectorAll('.tech-sec');
+  if (allSections.length > 0) {
+    allSections[allSections.length - 1].classList.add('last');
+  }
 })();
-/* ↑ DOMContentLoadedを使わず即時実行。
-   scriptタグをbody末尾に置くことでDOMが確実に存在する状態で実行できる。 */
+
+/* ナビゲーションドットを生成 */
+(function buildNavDots() {
+  const nav = document.getElementById('techNavDots');
+  if (!nav) return;
+
+  nav.innerHTML = visibleEntries.map((entry, i) => `
+    <button class="tech-nav-dot ${i === 0 ? 'active' : ''}"
+            data-index="${i}"
+            aria-label="${entry.title_jp}"
+            title="${entry.title_jp}"></button>
+  `).join('');
+
+  /* クリックでスクロール */
+  nav.querySelectorAll('.tech-nav-dot').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.index);
+      const target = document.querySelector(
+        `.tech-sec[data-index="${idx}"]`
+      );
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+})();
+
+/* ── アニメーション制御 ─────────────────────────────────────
+   各セクションに入ったタイミングで:
+   1. 動画/画像が即座に表示開始（背景なので元から見えている）
+   2. 0.8s後: num + title がフェードイン
+   3. 1.4s後: title-en がフェードイン
+   4. 1.9s後: body + date + link がフェードイン
+   セクションを外れたらアニメーションをリセット（再度入ると再生）
+   ─────────────────────────────────────────────────────────── */
+(function initAnimations() {
+  const sections = document.querySelectorAll('.tech-sec');
+  if (!sections.length) return;
+
+  /* アニメーション遅延の定義 */
+  const DELAYS = {
+    'tech-sec__anim--num':      800,  // ms
+    'tech-sec__anim--title':    800,
+    'tech-sec__anim--title-en': 1400,
+    'tech-sec__anim--body':     1900,
+  };
+
+  /* タイマーIDを保持（セクション離脱時にクリア） */
+  const timers = new Map();
+
+  function animateIn(section) {
+    const id = section.dataset.id;
+
+    /* 同一セクションのタイマーがあればクリア */
+    if (timers.has(id)) {
+      timers.get(id).forEach(t => clearTimeout(t));
+    }
+
+    const sectionTimers = [];
+    Object.entries(DELAYS).forEach(([cls, delay]) => {
+      const els = section.querySelectorAll(`.${cls}`);
+      const t = setTimeout(() => {
+        els.forEach(el => el.classList.add('visible'));
+      }, delay);
+      sectionTimers.push(t);
+    });
+
+    timers.set(id, sectionTimers);
+  }
+
+  function animateOut(section) {
+    const id = section.dataset.id;
+    if (timers.has(id)) {
+      timers.get(id).forEach(t => clearTimeout(t));
+      timers.delete(id);
+    }
+    /* アニメーション要素をリセット */
+    section.querySelectorAll('.tech-sec__anim').forEach(el => {
+      el.classList.remove('visible');
+    });
+  }
+
+  /* IntersectionObserver: セクションが画面の50%以上見えたらアニメーション開始 */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateIn(entry.target);
+        /* ナビゲーションドットを更新 */
+        const idx = parseInt(entry.target.dataset.index);
+        document.querySelectorAll('.tech-nav-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === idx);
+        });
+      } else {
+        animateOut(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.5  /* セクションの50%が見えたらトリガー */
+  });
+
+  sections.forEach(s => observer.observe(s));
+})();

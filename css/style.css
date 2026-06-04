@@ -1849,3 +1849,283 @@ h2, .h2 {
 
   .display { font-size: clamp(32px, 8vw, 48px); }
 }
+
+/* ============================================================
+   Technology Page — フルスクリーンセクション
+   ============================================================ */
+
+/* body にtech-pageクラスがある場合、footerのmarginを消す */
+.tech-page .footer { margin-top: 0; }
+
+/* Navを常に透明＋白テキスト固定（Techページ専用） */
+.nav--tech { background: transparent !important; }
+.nav--tech .nav__link,
+.nav--tech .nav__logo { color: #fff; }
+.nav--tech .lang-toggle__item { color: rgba(255,255,255,.6); }
+.nav--tech .lang-toggle__item.active { color: #fff; }
+.nav--tech .btn--primary {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  border: 0.5px solid rgba(255,255,255,.3);
+}
+.nav--tech.scrolled { background: rgba(0,0,0,.5) !important; backdrop-filter: blur(12px); }
+/* ハンバーガー（モバイル） */
+.nav--tech .nav__hamburger span { background: #fff; }
+
+/* ── セクションラッパー ── */
+.tech-sections { display: block; }
+
+.tech-sec {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ── 素材（動画/画像）── */
+.tech-sec__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── プレースホルダー ── */
+.tech-sec__placeholder {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.tech-sec__ph-play {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tech-sec__ph-tri {
+  width: 0; height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 14px solid rgba(255,255,255,.35);
+  margin-left: 4px;
+}
+.tech-sec__ph-img {
+  font-size: 28px;
+  opacity: .25;
+}
+.tech-sec__ph-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.2);
+}
+.tech-sec__ph-desc {
+  font-size: 9px;
+  color: rgba(255,255,255,.12);
+  letter-spacing: .04em;
+}
+
+/* ── オーバーレイ（テキスト可読性確保） ── */
+.tech-sec__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.88) 0%,
+    rgba(0,0,0,0.55) 35%,
+    rgba(0,0,0,0.15) 65%,
+    rgba(0,0,0,0.05) 100%
+  );
+}
+
+/* ── テキストコンテンツ ── */
+.tech-sec__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 48px 56px;
+  max-width: 680px;
+}
+
+@media (max-width: 768px) {
+  .tech-sec__content {
+    padding: 0 24px 48px;
+    max-width: 100%;
+  }
+}
+
+.tech-sec__num {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 14px;
+}
+
+.tech-sec__title {
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  .tech-sec__title { font-size: 26px; }
+}
+
+.tech-sec__title-en {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,.4);
+  letter-spacing: .02em;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  .tech-sec__title-en { font-size: 12px; margin-bottom: 16px; }
+}
+
+.tech-sec__body {
+  font-size: 14px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.85;
+  margin-bottom: 12px;
+  white-space: pre-line;
+}
+
+@media (max-width: 768px) {
+  .tech-sec__body {
+    font-size: 12px;
+  }
+}
+
+.tech-sec__date {
+  font-size: 10px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+
+.tech-sec__link {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,.65);
+  letter-spacing: .04em;
+  border-bottom: 0.5px solid rgba(255,255,255,.25);
+  padding-bottom: 2px;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+.tech-sec__link:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,.6);
+}
+
+/* ── スクロールインジケーター ── */
+.tech-sec__scroll-ind {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.tech-sec.last .tech-sec__scroll-ind { opacity: 0; pointer-events: none; }
+
+.tech-sec__scroll-line {
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: .4; transform: scaleY(1); }
+  50% { opacity: .8; transform: scaleY(1.15); }
+}
+.tech-sec__scroll-label {
+  font-size: 7px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .14em;
+}
+
+/* ── ナビゲーションドット ── */
+.tech-nav-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .tech-nav-dots { right: 12px; gap: 6px; }
+}
+
+.tech-nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 300ms ease, transform 300ms ease;
+}
+.tech-nav-dot.active {
+  background: #fff;
+  transform: scale(1.3);
+}
+.tech-nav-dot:hover { background: rgba(255,255,255,.6); }
+
+/* ── アニメーション（フェードイン） ── */
+.tech-sec__anim {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+.tech-sec__anim.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tech-sec__anim--num {
+  transform: translateY(6px);
+  transition-duration: 500ms;
+}
+.tech-sec__anim--title {
+  transform: translateY(14px);
+  transition-duration: 700ms;
+}
+.tech-sec__anim--title-en {
+  transform: translateY(10px);
+  transition-duration: 600ms;
+}
+.tech-sec__anim--body {
+  transform: translateY(8px);
+  transition-duration: 600ms;
+}
