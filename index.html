@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=17">
+  <link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body>
 
@@ -90,37 +90,49 @@
   </section>
 
   <!-- ========== TECHNOLOGY — Home section ========== -->
-  <section class="home-tech fade-in">
-    <div class="home-tech__inner">
-      <!-- 左 2/5: テキスト -->
-      <div class="home-tech__text">
-        <p class="caption home-tech__eyebrow" data-jp="Technology" data-en="Technology">Technology</p>
-        <h2 class="h2 home-tech__title"
-            data-jp="ウェアラブル飛行システムの開発"
-            data-en="Wearable Flight System Development">
-          ウェアラブル飛行システムの開発
-        </h2>
-        <p class="home-tech__body"
-           data-jp="石川県加賀市の試験拠点で、ホバリング試験を継続中。推進・制御・構造の3軸で世界初のシステムを開発している。"
-           data-en="Ongoing hovering tests at our facility in Kaga, Ishikawa. Developing the world's first system across three axes: propulsion, control, and structure.">
-          石川県加賀市の試験拠点で、ホバリング試験を継続中。推進・制御・構造の3軸で世界初のシステムを開発している。
-        </p>
-        <a href="technology.html" class="btn btn--primary home-tech__btn"
-           data-jp="Learn more →" data-en="Learn more →">Learn more →</a>
-      </div>
-      <!-- 右 3/5: 正方形クロップ動画 -->
-      <a href="technology/hands-free.html" class="home-tech__video-link">
-        <video class="home-tech__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-          <source src="assets/videos/hands-free.mp4" type="video/mp4">
-        </video>
-        <div class="home-tech__video-overlay"></div>
-        <div class="home-tech__video-label">
-          <span class="home-tech__video-chip" data-jp="最新試験" data-en="Latest Test">最新試験</span>
-          <p class="home-tech__video-title" data-jp="ハンズフリーホバリング" data-en="Hands-free Hovering">ハンズフリーホバリング</p>
-          <span class="home-tech__video-arrow">→</span>
-        </div>
-      </a>
+  <section class="home-tech-v2" id="home-tech">
+
+    <!-- ── DESKTOP: 左パネル ── -->
+    <div class="htv2-left">
+      <p class="htv2-eyebrow caption"
+         data-jp="Technology" data-en="Technology">Technology</p>
+      <p class="htv2-copy"
+         data-jp="Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can."
+         data-en="Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can."
+         data-html="true">Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can.</p>
+      <a href="technology.html" class="btn btn--primary htv2-btn"
+         data-jp="Learn more →" data-en="Learn more →">Learn more →</a>
     </div>
+
+    <!-- ── DESKTOP: 右パネル（独立スクロール） ── -->
+    <!-- ── MOBILE: 横スクロールカルーセル ── -->
+    <div class="htv2-right" id="htv2Right">
+
+      <!-- スクロールヒント（デスクトップ用） -->
+      <div class="htv2-scroll-hint" aria-hidden="true">
+        <span class="htv2-scroll-hint-label"
+              data-jp="scroll to explore"
+              data-en="scroll to explore">scroll to explore</span>
+        <div class="htv2-scroll-dots" id="htv2Dots">
+          <!-- js/home-tech.js が生成 -->
+        </div>
+      </div>
+
+      <!-- スワイプヒント（モバイル用） -->
+      <div class="htv2-swipe-hint" aria-hidden="true">
+        <span class="htv2-swipe-label"
+              data-jp="swipe"
+              data-en="swipe">swipe</span>
+        <div class="htv2-swipe-dots" id="htv2SwipeDots">
+          <!-- js/home-tech.js が生成 -->
+        </div>
+      </div>
+
+      <!-- エントリ群: js/home-tech.js が TECH_ENTRIES から生成 -->
+      <div class="htv2-entries" id="htv2Entries"></div>
+
+    </div>
+
   </section>
 
   <!-- ========== NEWS CAROUSEL ========== -->
@@ -275,6 +287,8 @@
   </footer>
 
 
-  <script src="js/main.js?v=17"></script>
+  <script src="js/tech.js?v=3"></script>
+  <script src="js/home-tech.js?v=1"></script>
+  <script src="js/main.js?v=18"></script>
 </body>
 </html>
