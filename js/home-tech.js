@@ -96,43 +96,69 @@
   const rightPanel = document.getElementById('htv2Right');
   if (!rightPanel) return;
 
-  /* ── ドット更新: IntersectionObserver方式（tech.jsと同じ）── */
+  /* ── ドット更新 ── */
   function updateDots(activeIndex) {
-    /* デスクトップ用ドット */
     document.querySelectorAll('#htv2Dots .htv2-dot').forEach((d, i) => {
       d.classList.toggle('active', i === activeIndex);
     });
-    /* モバイル用ドット */
     document.querySelectorAll('#htv2SwipeDots .htv2-dot').forEach((d, i) => {
       d.classList.toggle('active', i === activeIndex);
     });
   }
 
-  /* エントリが50%以上見えたらドットを更新 */
-  const entryObserver = new IntersectionObserver(observerEntries => {
-    observerEntries.forEach(observerEntry => {
-      if (observerEntry.isIntersecting) {
-        const idx = parseInt(observerEntry.target.dataset.index);
-        updateDots(idx);
-      }
+  /* ── デスクトップ用Observer（root = htv2Right）── */
+  function initDesktopObserver() {
+    const desktopObserver = new IntersectionObserver(observerEntries => {
+      observerEntries.forEach(oe => {
+        if (oe.isIntersecting && oe.intersectionRatio >= 0.3) {
+          updateDots(parseInt(oe.target.dataset.index));
+        }
+      });
+    }, {
+      root: rightPanel,
+      threshold: [0.3, 0.5]
     });
-  }, {
-    /* デスクトップは右パネル、モバイルは横スクロールコンテナをrootに指定 */
-    root: null,         /* viewport基準。両方に対応 */
-    threshold: 0.5      /* 50%見えたらトリガー */
-  });
+    entriesContainer.querySelectorAll('.htv2-entry').forEach(el => {
+      desktopObserver.observe(el);
+    });
+    updateDots(0);
+  }
 
-  /* 全エントリを監視 */
-  entriesContainer.querySelectorAll('.htv2-entry').forEach(el => {
-    entryObserver.observe(el);
-  });
+  /* ── モバイル用Observer（root = entriesContainer）── */
+  function initMobileObserver() {
+    const mobileObserver = new IntersectionObserver(observerEntries => {
+      observerEntries.forEach(oe => {
+        if (oe.isIntersecting && oe.intersectionRatio >= 0.3) {
+          updateDots(parseInt(oe.target.dataset.index));
+        }
+      });
+    }, {
+      root: entriesContainer,
+      threshold: [0.3, 0.5]
+    });
+    entriesContainer.querySelectorAll('.htv2-entry').forEach(el => {
+      mobileObserver.observe(el);
+    });
+    updateDots(0);
+  }
 
-  /* ── ドットクリックでスクロール ────────────────────────── */
+  /* 画面幅で切り替え */
+  const mq = window.matchMedia('(max-width: 768px)');
+  if (mq.matches) {
+    initMobileObserver();
+  } else {
+    initDesktopObserver();
+  }
+  mq.addEventListener('change', () => location.reload());
+
+  /* ドットクリックでスクロール（デスクトップ） */
   document.querySelectorAll('#htv2Dots .htv2-dot').forEach(dot => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.index);
-      const totalH = rightPanel.scrollHeight;
-      rightPanel.scrollTo({ top: (totalH / entries.length) * idx, behavior: 'smooth' });
+      const entryEls = entriesContainer.querySelectorAll('.htv2-entry');
+      if (entryEls[idx]) {
+        rightPanel.scrollTo({ top: entryEls[idx].offsetTop, behavior: 'smooth' });
+      }
     });
   });
 
