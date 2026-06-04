@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=20">
 </head>
-<body>
+<body class="home-page">
 
   <!-- ========== NAVIGATION ========== -->
   <nav class="nav" id="nav">
@@ -93,46 +93,156 @@
   </section>
 
   <!-- ========== TECHNOLOGY — Home section ========== -->
-  <section class="home-tech-v2" id="home-tech">
+  <section class="home-tech-grid" id="home-tech" data-nav-dark>
 
-    <!-- ── DESKTOP: 左パネル ── -->
-    <div class="htv2-left">
-      <p class="htv2-eyebrow caption"
-         data-jp="Technology" data-en="Technology">Technology</p>
-      <p class="htv2-copy"
-         data-jp="Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can."
-         data-en="Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can."
-         data-html="true">Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can.</p>
-      <a href="technology.html" class="btn btn--primary htv2-btn"
-         data-jp="Learn more →" data-en="Learn more →">Learn more →</a>
+    <!-- ── デスクトップ用レイアウト ── -->
+    <div class="htg-desktop-layout">
+
+      <!-- 左カラム -->
+      <div class="htg-left">
+        <!-- テキストエリア（上1/3） -->
+        <div class="htg-text">
+          <p class="htg-eyebrow caption"
+             data-jp="Technology" data-en="Technology">Technology</p>
+          <p class="htg-copy"
+             data-jp="Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can."
+             data-en="Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can."
+             data-html="true">Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can.</p>
+          <a href="technology.html" class="btn btn--primary htg-btn"
+             data-jp="View all →" data-en="View all →">View all →</a>
+        </div>
+
+        <!-- 01セル（下2/3） -->
+        <a href="technology.html#tech-sec-field" class="htg-cell htg-cell--01">
+          <div class="htg-cell-placeholder">
+            <div class="htg-ph-icon"><div class="htg-ph-tri"></div></div>
+            <p class="htg-ph-label">VIDEO / PHOTO</p>
+            <p class="htg-ph-desc">人が空を飛ぶフィールド</p>
+          </div>
+          <div class="htg-cell-overlay"></div>
+          <div class="htg-cell-meta">
+            <p class="htg-cell-num">01</p>
+            <h3 class="htg-cell-title"
+                data-jp="人が空を飛ぶフィールド"
+                data-en="A Field for Human Flight">人が空を飛ぶフィールド</h3>
+            <p class="htg-cell-en"
+               data-jp="A Field for Human Flight"
+               data-en="A Field for Human Flight">A Field for Human Flight</p>
+            <span class="htg-cell-arr">→</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 右カラム -->
+      <div class="htg-right">
+        <!-- 03セル（上半分） -->
+        <a href="technology.html#tech-sec-hands" class="htg-cell htg-cell--03">
+          <div class="htg-cell-placeholder">
+            <div class="htg-ph-icon"><div class="htg-ph-tri"></div></div>
+            <p class="htg-ph-label">VIDEO / PHOTO</p>
+            <p class="htg-ph-desc">身体を解放する</p>
+          </div>
+          <div class="htg-cell-overlay"></div>
+          <div class="htg-cell-meta">
+            <p class="htg-cell-num">03</p>
+            <h3 class="htg-cell-title"
+                data-jp="身体を解放する"
+                data-en="Freeing the Hands">身体を解放する</h3>
+            <p class="htg-cell-en"
+               data-jp="Freeing the Hands"
+               data-en="Freeing the Hands">Freeing the Hands</p>
+            <span class="htg-cell-arr">→</span>
+          </div>
+        </a>
+
+        <!-- 02セル（下半分） -->
+        <a href="technology.html#tech-sec-body" class="htg-cell htg-cell--02">
+          <div class="htg-cell-placeholder">
+            <div class="htg-ph-icon"><div class="htg-ph-tri"></div></div>
+            <p class="htg-ph-label">VIDEO / PHOTO</p>
+            <p class="htg-ph-desc">身体と飛行</p>
+          </div>
+          <div class="htg-cell-overlay"></div>
+          <div class="htg-cell-meta">
+            <p class="htg-cell-num">02</p>
+            <h3 class="htg-cell-title"
+                data-jp="身体と飛行"
+                data-en="Flight Should Follow the Body">身体と飛行</h3>
+            <p class="htg-cell-en"
+               data-jp="Flight Should Follow the Body"
+               data-en="Flight Should Follow the Body">Flight Should Follow the Body</p>
+            <span class="htg-cell-arr">→</span>
+          </div>
+        </a>
+      </div>
+
     </div>
 
-    <!-- ── DESKTOP: 右パネル（独立スクロール） ── -->
-    <!-- ── MOBILE: 横スクロールカルーセル ── -->
-    <div class="htv2-right" id="htv2Right">
+    <!-- ── モバイル用レイアウト ── -->
+    <div class="htg-mobile-layout">
 
-      <!-- スクロールヒント（デスクトップ用） -->
-      <div class="htv2-scroll-hint" aria-hidden="true">
-        <span class="htv2-scroll-hint-label"
-              data-jp="scroll to explore"
-              data-en="scroll to explore">scroll to explore</span>
-        <div class="htv2-scroll-dots" id="htv2Dots">
-          <!-- js/home-tech.js が生成 -->
-        </div>
+      <!-- テキストエリア（モバイル） -->
+      <div class="htg-text">
+        <p class="htg-eyebrow caption"
+           data-jp="Technology" data-en="Technology">Technology</p>
+        <p class="htg-copy"
+           data-jp="Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can."
+           data-en="Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can."
+           data-html="true">Human flight is not a vehicle problem.<br><br>It is a body problem.<br><br>We are not building a machine that flies.<br><br>We are building a body that can.</p>
+        <a href="technology.html" class="btn btn--primary htg-btn"
+           data-jp="View all →" data-en="View all →">View all →</a>
       </div>
 
-      <!-- スワイプヒント（モバイル用） -->
-      <div class="htv2-swipe-hint" aria-hidden="true">
-        <span class="htv2-swipe-label"
-              data-jp="swipe"
-              data-en="swipe">swipe</span>
-        <div class="htv2-swipe-dots" id="htv2SwipeDots">
-          <!-- js/home-tech.js が生成 -->
+      <!-- 03: 全幅大枠 -->
+      <a href="technology.html#tech-sec-hands" class="htg-cell htg-mob-cell--03">
+        <div class="htg-cell-placeholder">
+          <div class="htg-ph-icon"><div class="htg-ph-tri"></div></div>
+          <p class="htg-ph-label">VIDEO / PHOTO</p>
         </div>
-      </div>
+        <div class="htg-cell-overlay"></div>
+        <div class="htg-cell-meta">
+          <p class="htg-cell-num">03</p>
+          <h3 class="htg-cell-title"
+              data-jp="身体を解放する"
+              data-en="Freeing the Hands">身体を解放する</h3>
+          <p class="htg-cell-en"
+             data-jp="Freeing the Hands"
+             data-en="Freeing the Hands">Freeing the Hands</p>
+          <span class="htg-cell-arr">→</span>
+        </div>
+      </a>
 
-      <!-- エントリ群: js/home-tech.js が TECH_ENTRIES から生成 -->
-      <div class="htv2-entries" id="htv2Entries"></div>
+      <!-- 02・01: 2列 -->
+      <div class="htg-mob-row">
+        <a href="technology.html#tech-sec-body" class="htg-cell htg-mob-cell--02">
+          <div class="htg-cell-placeholder">
+            <div class="htg-ph-icon"><div class="htg-ph-tri"></div></div>
+            <p class="htg-ph-label">02</p>
+          </div>
+          <div class="htg-cell-overlay"></div>
+          <div class="htg-cell-meta">
+            <p class="htg-cell-num">02</p>
+            <h3 class="htg-cell-title"
+                data-jp="身体と飛行"
+                data-en="Flight Should Follow the Body">身体と飛行</h3>
+            <span class="htg-cell-arr">→</span>
+          </div>
+        </a>
+        <a href="technology.html#tech-sec-field" class="htg-cell htg-mob-cell--01">
+          <div class="htg-cell-placeholder">
+            <div class="htg-ph-icon"><div class="htg-ph-tri"></div></div>
+            <p class="htg-ph-label">01</p>
+          </div>
+          <div class="htg-cell-overlay"></div>
+          <div class="htg-cell-meta">
+            <p class="htg-cell-num">01</p>
+            <h3 class="htg-cell-title"
+                data-jp="人が空を飛ぶフィールド"
+                data-en="A Field for Human Flight">人が空を飛ぶフィールド</h3>
+            <span class="htg-cell-arr">→</span>
+          </div>
+        </a>
+      </div>
 
     </div>
 
@@ -292,7 +402,6 @@
   </div><!-- end .home-scroll-container -->
 
   <script src="js/tech.js?v=3"></script>
-  <script src="js/home-tech.js?v=2"></script>
   <script src="js/news.js?v=2"></script>
   <script src="js/main.js?v=19"></script>
 </body>

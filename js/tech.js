@@ -361,3 +361,25 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
 
   sections.forEach(s => observer.observe(s));
 })();
+
+/* ── ページ読み込み時: URLハッシュで該当セクションへスクロール ── */
+(function initHashScroll() {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  const scrollContainer = document.getElementById('techScrollContainer');
+  if (!scrollContainer) return;
+
+  /* DOMが完全に構築されてからスクロール */
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const target = document.querySelector(hash);
+      if (target) {
+        scrollContainer.scrollTo({
+          top: target.offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+})();

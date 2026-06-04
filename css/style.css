@@ -2576,8 +2576,8 @@ h2, .h2 {
    bodyではなく専用のposition:fixedコンテナをスクロール軸にする。
    ============================================================ */
 
-/* bodyはスクロールしない */
-body:not(.tech-page) {
+/* bodyはスクロールしない（homeページのみ） */
+body.home-page {
   overflow: hidden;
   height: 100dvh;
 }
@@ -2652,6 +2652,306 @@ body:not(.tech-page) {
 
 /* ── Newsカルーセルの横スクロールとの干渉を防ぐ ── */
 .news-carousel {
-  touch-action: pan-x;
-  overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
+}
+
+/* ============================================================
+   Home — Technology グリッドセクション
+   ============================================================ */
+
+.home-tech-grid {
+  position: relative;
+  background: #111;
+}
+
+/* ── デスクトップ用レイアウト ── */
+.htg-desktop-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  height: 100svh;
+  min-height: 600px;
+  width: 100%;
+}
+
+/* モバイル用レイアウト（デスクトップでは非表示） */
+.htg-mobile-layout {
+  display: none;
+}
+
+/* ── 左カラム ── */
+.htg-left {
+  display: flex;
+  flex-direction: column;
+  border-right: 0.5px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+
+/* テキストエリア: 上1/3 */
+.htg-text {
+  flex: 0 0 33.333%;
+  background: #F7F6F3;
+  border-bottom: 0.5px solid #E5E3DC;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.htg-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B4B2AA;
+  margin-bottom: 10px;
+}
+
+.htg-copy {
+  font-size: 13px;
+  color: #3D3C37;
+  line-height: 1.85;
+  font-style: italic;
+  flex: 1;
+  margin-bottom: 16px;
+  white-space: pre-line;
+}
+
+.htg-btn {
+  width: fit-content;
+}
+
+/* 01セル: 下2/3 */
+.htg-cell--01 {
+  flex: 1;
+}
+
+/* ── 右カラム ── */
+.htg-right {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 03: 上半分 */
+.htg-cell--03 {
+  flex: 1;
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+}
+
+/* 02: 下半分 */
+.htg-cell--02 {
+  flex: 1;
+}
+
+/* ── セル共通スタイル ── */
+.htg-cell {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  background: #111;
+  cursor: pointer;
+}
+
+/* ホバーで明るくなる */
+.htg-cell:hover .htg-cell-placeholder {
+  opacity: 1.0;
+}
+.htg-cell:hover video,
+.htg-cell:hover img {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+/* 動画・画像（素材追加時に使用） */
+.htg-cell video,
+.htg-cell img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+/* プレースホルダー */
+.htg-cell-placeholder {
+  position: absolute;
+  inset: 0;
+  background: #1A1A18;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 0.3s ease;
+}
+
+/* 各セルの背景色をウォームトーンのグレーで微妙に変える */
+.htg-cell--01 .htg-cell-placeholder { background: linear-gradient(160deg, #141A14 0%, #222A22 100%); }
+.htg-cell--02 .htg-cell-placeholder { background: linear-gradient(160deg, #18181F 0%, #252530 100%); }
+.htg-cell--03 .htg-cell-placeholder { background: linear-gradient(160deg, #1A1A18 0%, #2C2C28 100%); }
+
+.htg-ph-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.htg-ph-tri {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 9px solid rgba(255,255,255,0.2);
+  margin-left: 2px;
+}
+
+.htg-ph-label {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
+}
+
+.htg-ph-desc {
+  font-size: 7px;
+  color: rgba(255,255,255,0.1);
+  letter-spacing: 0.06em;
+}
+
+/* オーバーレイ */
+.htg-cell-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.3) 45%,
+    rgba(0,0,0,0.05) 100%
+  );
+  transition: opacity 0.3s ease;
+}
+
+/* テキスト */
+.htg-cell-meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 18px;
+  z-index: 2;
+}
+
+.htg-cell-num {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
+}
+
+.htg-cell-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+
+/* 01は大きめ */
+.htg-cell--01 .htg-cell-title {
+  font-size: 20px;
+}
+
+.htg-cell-en {
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.htg-cell-arr {
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.2s ease;
+}
+
+.htg-cell:hover .htg-cell-arr {
+  color: rgba(255,255,255,0.7);
+}
+
+/* ── モバイル（768px以下） ── */
+@media (max-width: 768px) {
+
+  .home-tech-grid {
+    height: auto;
+  }
+
+  /* デスクトップ用を非表示 */
+  .htg-desktop-layout {
+    display: none;
+  }
+
+  /* モバイル用を表示 */
+  .htg-mobile-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #333;
+  }
+
+  /* テキストエリア（モバイル） */
+  .htg-text {
+    flex: 0 0 auto;
+    background: #F7F6F3;
+    border-bottom: 0.5px solid #E5E3DC;
+    padding: 24px 20px;
+  }
+
+  /* 03: 全幅大枠 */
+  .htg-mob-cell--03 {
+    height: 52vw;
+    min-height: 200px;
+  }
+
+  /* 02・01: 2列 */
+  .htg-mob-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #333;
+  }
+
+  .htg-mob-cell--02,
+  .htg-mob-cell--01 {
+    height: 38vw;
+    min-height: 140px;
+  }
+
+  .htg-cell-meta {
+    padding: 10px 12px;
+  }
+
+  .htg-cell-title {
+    font-size: 12px;
+  }
+
+  .htg-cell--01 .htg-cell-title,
+  .htg-mob-cell--03 .htg-cell-title {
+    font-size: 14px;
+  }
+
+  .htg-cell-en {
+    font-size: 8px;
+  }
 }
