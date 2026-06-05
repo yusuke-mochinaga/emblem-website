@@ -689,7 +689,7 @@ h2, .h2 {
    ============================================================ */
 .news-card {
   flex-shrink: 0;
-  width: 400px;
+  width: 480px;
   border: var(--border);
   border-radius: var(--radius-card);
   overflow: hidden;
@@ -732,11 +732,17 @@ h2, .h2 {
 }
 /* 加賀市マーク：他ロゴの約2倍 */
 .news-card__img img.news-card__img--kaga {
-  height: 220px;
+  height: 264px;
   max-width: 88%;
 }
 /* ロゴ表示バリアント */
-.news-card__img--white { background: #fff; border-bottom: var(--border); }
+.news-card__img--white {
+  background: #fff;
+  border-bottom: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .news-card__img--dark  { background: var(--void-black); }
 .news-card__img--dark img { filter: brightness(0) invert(1) !important; } /* 暗背景で白ロゴに */
 .news-card__img--stone { background: var(--stone-50); border-bottom: var(--border); }
