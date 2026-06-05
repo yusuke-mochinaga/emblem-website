@@ -2698,7 +2698,7 @@ body.home-page {
   overflow: hidden;
   background: #F7F6F3;
   border-bottom: 0.5px solid #E5E3DC;
-  padding: 72px 32px 0px 32px;
+  padding: 0 32px 16px 32px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -2719,13 +2719,15 @@ body.home-page {
   color: #3D3C37;
   line-height: 1.5;
   font-style: italic;
-  margin-bottom: 16px;
+  margin-bottom: 0;
   white-space: pre-line;
+  flex: 1;
 }
 
 .htg-btn {
   width: fit-content;
-  margin-left: auto;
+  margin-top: 12px;
+  flex-shrink: 0;
 }
 
 /* 01セル: 下2/3 */
@@ -2930,7 +2932,7 @@ body.home-page {
     overflow: hidden;
     background: #F7F6F3;
     border-bottom: 0.5px solid #E5E3DC;
-    padding: 72px 20px 0px 20px;
+    padding: 0 20px 16px 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
