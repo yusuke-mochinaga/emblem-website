@@ -2893,9 +2893,14 @@ body.home-page {
   }
 }
 
-.htg-cell-image {
+.htg-cell-image,
+.htg-cell-media {
   animation: htg-zoom 12s ease-in-out infinite alternate;
   z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .htg-ph-desc {
