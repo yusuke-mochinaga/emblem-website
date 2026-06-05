@@ -494,11 +494,16 @@ h2, .h2 {
 
 /* ── Hero animation（段階的フェードイン） ── */
 .hero-anim {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 400ms ease-out, transform 400ms ease-out;
 }
-.hero-anim.visible {
+/* アニメーション前の状態 */
+.hero-anim.animating {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.hero-anim.animating.visible {
   opacity: 1;
   transform: none;
 }

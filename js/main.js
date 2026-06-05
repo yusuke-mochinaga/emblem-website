@@ -148,22 +148,18 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
     'hero-anim--body': 1200,
   };
 
-  let animated = false;
+  // 最初にすべての hero-anim 要素に animating クラスを追加
+  hero.querySelectorAll('.hero-anim').forEach(el => {
+    el.classList.add('animating');
+  });
 
-  function animateHero() {
-    if (animated) return;
-    animated = true;
-
-    Object.entries(DELAYS).forEach(([cls, delay]) => {
-      setTimeout(() => {
-        const els = hero.querySelectorAll(`.${cls}`);
-        els.forEach(el => el.classList.add('visible'));
-      }, delay);
-    });
-  }
-
-  // ページロード時にすぐにアニメーション開始
-  animateHero();
+  // その後、指定されたタイミングで visible クラスを追加
+  Object.entries(DELAYS).forEach(([cls, delay]) => {
+    setTimeout(() => {
+      const els = hero.querySelectorAll(`.${cls}`);
+      els.forEach(el => el.classList.add('visible'));
+    }, delay);
+  });
 })();
 
 /* ---------- Fade-in (Intersection Observer) ---------- */
