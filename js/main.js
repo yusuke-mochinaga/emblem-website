@@ -23,57 +23,6 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
    白セクションにさしかかったらグレー背景＋黒テキスト。
    nav--light ページ（tech/news等）は常に light のまま。
    ------------------------------------------------------------ */
-(function initNavTheme() {
-  const nav = document.querySelector('.nav');
-  if (!nav) return;
-
-  // nav--light ページは常に light — JS では触らない
-  if (nav.classList.contains('nav--light')) return;
-
-  const NAV_H = 64; // --nav-height と揃える
-  const darkSections = document.querySelectorAll('[data-nav-dark]');
-  if (!darkSections.length) {
-    // dark セクションが一つもない → 常に gray
-    nav.classList.add('scrolled');
-    return;
-  }
-
-  // どの dark セクションが nav と重なっているかを追跡
-  const overlapping = new Set();
-  let initialized = false;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        overlapping.add(entry.target);
-      } else {
-        overlapping.delete(entry.target);
-      }
-    });
-    initialized = true;
-    applyTheme();
-  }, {
-    /* home-scroll-containerをrootに指定 */
-    root: document.getElementById('homeScrollContainer'),
-    rootMargin: `0px 0px -${window.innerHeight - NAV_H}px 0px`,
-    threshold: 0
-  });
-
-  darkSections.forEach(s => observer.observe(s));
-
-  function applyTheme() {
-    if (!initialized || overlapping.size > 0) {
-      // dark セクションが nav と重なっている（または初期化前）→ 透明
-      nav.classList.remove('scrolled');
-    } else {
-      // 白セクション → グレー背景
-      nav.classList.add('scrolled');
-    }
-  }
-
-  applyTheme();
-})();
-
 /* ---------- Hamburger / Mobile overlay ---------- */
 (function initHamburger() {
   const btn = document.querySelector('.nav__hamburger');
@@ -92,6 +41,69 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
       document.body.style.overflow = '';
     });
   });
+})();
+
+/* ---------- Nav スクロール連動（表示/非表示）----------
+   下スクロール → Navが上にスライドして消える
+   上スクロール → Navが戻ってくる
+   ページ最上部付近（80px以内）→ 常に表示
+
+   home/tech は position:fixed の専用コンテナをスクロールするため
+   window.scrollY ではなくコンテナの scrollTop を監視する。
+   その他のページ（news/recruit等）は window を監視する。
+   -------------------------------------------------------- */
+(function initNavScroll() {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+
+  /* ページ最上部からこのpx以内は常に表示 */
+  const TOP_THRESHOLD = 80;
+  /* この量以上スクロールしたら判定（小さい揺れを無視） */
+  const DELTA = 6;
+
+  function setupListener(scrollTarget) {
+    let lastTop = 0;
+    let ticking = false;
+
+    const getTop = () =>
+      scrollTarget === window ? window.scrollY : scrollTarget.scrollTop;
+
+    scrollTarget.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const current = getTop();
+        const delta = current - lastTop;
+
+        if (current < TOP_THRESHOLD) {
+          /* 最上部付近: 必ず表示 */
+          nav.classList.remove('nav--hidden');
+        } else if (delta > DELTA) {
+          /* 下スクロール: 非表示 */
+          nav.classList.add('nav--hidden');
+        } else if (delta < -DELTA) {
+          /* 上スクロール: 表示 */
+          nav.classList.remove('nav--hidden');
+        }
+
+        lastTop = current;
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  /* homeScrollContainer（index.html） */
+  const homeContainer = document.getElementById('homeScrollContainer');
+  if (homeContainer) setupListener(homeContainer);
+
+  /* techScrollContainer（technology.html） */
+  const techContainer = document.getElementById('techScrollContainer');
+  if (techContainer) setupListener(techContainer);
+
+  /* 上記どちらもないページ（news/recruit/team/privacy）*/
+  if (!homeContainer && !techContainer) {
+    setupListener(window);
+  }
 })();
 
 /* ---------- Language toggle（localStorage で永続化）---------- */

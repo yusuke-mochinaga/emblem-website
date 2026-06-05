@@ -103,33 +103,36 @@ h2, .h2 {
 .fade-in.visible { opacity: 1; transform: none; }
 
 /* ============================================================
-   NAVIGATION
+   Nav — グラデーション方式
+   常に透明＋グラデーションオーバーレイ。
+   背景切り替えなし。どのページ・セクションでも同じ表示。
    ============================================================ */
+
 .nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height); /* 64px */
   z-index: 1000;
-  height: var(--nav-height);
-  background: transparent;
-  transition: background var(--transition-fast), border-bottom var(--transition-fast), backdrop-filter var(--transition-fast);
+  /* 上: 半透明黒 → 下: 透明 のグラデーション */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.52) 0%,
+    rgba(0, 0, 0, 0.0) 100%
+  );
+  /* スクロール連動の表示/非表示アニメーション */
+  transition: transform 300ms ease, opacity 300ms ease;
 }
-.nav.scrolled {
-  background: rgba(195,192,186,0.95); /* 濃いめグレー */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: var(--border);
-}
-/* light nav（tech/news等）: 同じグレー固定 */
-.nav--light {
-  background: rgba(195,192,186,0.97);
-  border-bottom: var(--border);
-}
-.nav.scrolled .nav__logo,
-.nav.scrolled .nav__link { color: var(--ink); }
 
-/* 透明 hero nav: 文字は白のまま（動画背景のため）*/
-/* JP/EN ボタンは scrolled / nav--light 時のみ黒に切り替わる */
+/* 下スクロール時にJSが付与するクラス */
+.nav.nav--hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
 
+/* ── テキスト・リンク: 常に白 ── */
 .nav__inner {
   display: flex;
   align-items: center;
@@ -147,8 +150,6 @@ h2, .h2 {
   transition: color var(--transition-fast);
   flex-shrink: 0;
 }
-.nav--light .nav__logo,
-.nav--light .nav__link { color: var(--ink); }
 
 /* Logo image */
 .nav__logo img {
@@ -180,39 +181,17 @@ h2, .h2 {
   margin: 0 auto;
 }
 .nav__link {
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.88);
+  color: rgba(255, 255, 255, 0.75);
   transition: color var(--transition-fast);
-  position: relative;
 }
-.nav__link:hover { color: var(--white); }
-.nav--light .nav__link { color: var(--stone-600); }
-.nav--light .nav__link:hover { color: var(--ink); }
-.nav.scrolled .nav__link { color: var(--stone-600); }
-.nav.scrolled .nav__link:hover { color: var(--ink); }
 
-/* 現在のページ */
+.nav__link:hover,
 .nav__link--active {
-  color: var(--white) !important;
-  font-weight: 600;
+  color: #ffffff;
 }
-.nav__link--active::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0; right: 0;
-  height: 1.5px;
-  background: var(--white);
-  border-radius: 1px;
-}
-.nav--light .nav__link--active,
-.nav.scrolled .nav__link--active {
-  color: var(--ink) !important;
-}
-.nav--light .nav__link--active::after,
-.nav.scrolled .nav__link--active::after {
-  background: var(--ink);
+
+.nav__link--active {
+  font-weight: 500;
 }
 
 .nav__right {
@@ -230,30 +209,22 @@ h2, .h2 {
   border: none;
   padding: 0;
 }
+
 .lang-toggle__item {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--stone-400); /* 非選択: 薄い */
+  color: rgba(255, 255, 255, 0.55);
+  background: none;
+  border: none;
   cursor: pointer;
-  padding: 2px 4px;
-  transition: color var(--transition-fast), font-weight var(--transition-fast);
+  font-size: 13px;
 }
+
 .lang-toggle__item.active {
-  color: var(--ink);    /* 選択中: 黒 */
-  font-weight: 700;
+  color: #ffffff;
 }
+
 .lang-toggle__sep {
-  font-size: 11px;
-  color: var(--stone-300, #D0CEC7);
+  color: rgba(255, 255, 255, 0.25);
 }
-/* scrolled / nav--light 時も同じ */
-.nav--light .lang-toggle__item,
-.nav.scrolled .lang-toggle__item { color: var(--stone-400); font-weight: 400; }
-.nav--light .lang-toggle__item.active,
-.nav.scrolled .lang-toggle__item.active { color: var(--ink); font-weight: 700; }
-.nav--light .lang-toggle__sep,
-.nav.scrolled .lang-toggle__sep { color: var(--stone-300, #D0CEC7); }
 
 .btn {
   display: inline-flex;
@@ -267,12 +238,26 @@ h2, .h2 {
   transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
 }
+
 .btn--primary {
   background: var(--ink);
   color: var(--white);
   border-color: var(--ink);
 }
+
 .btn--primary:hover { background: var(--stone-800); border-color: var(--stone-800); }
+
+/* Apply now / Join the mission ボタン */
+.nav .btn--primary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+}
+
+.nav .btn--primary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
 
 .btn--ghost {
   background: transparent;
@@ -322,15 +307,9 @@ h2, .h2 {
   pointer-events: auto;
   /* z-index削除: navのz-index（1000）を継承 */
 }
+/* ハンバーガー三本線: 常に白 */
 .nav__hamburger span {
-  display: block;
-  width: 20px;
-  height: 1.5px;
-  background: var(--ink);
-  border-radius: 1px;
-  transition: all 200ms ease;
-  opacity: 1;
-  visibility: visible;
+  background: #ffffff;
 }
 
 .nav__hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -1876,21 +1855,6 @@ h2, .h2 {
 
 /* body にtech-pageクラスがある場合、footerのmarginを消す */
 .tech-page .footer { margin-top: 0; }
-
-/* Navを常に透明＋白テキスト固定（Techページ専用） */
-.nav--tech { background: transparent !important; }
-.nav--tech .nav__link,
-.nav--tech .nav__logo { color: #fff; }
-.nav--tech .lang-toggle__item { color: rgba(255,255,255,.6); }
-.nav--tech .lang-toggle__item.active { color: #fff; }
-.nav--tech .btn--primary {
-  background: rgba(255,255,255,.15);
-  color: #fff;
-  border: 0.5px solid rgba(255,255,255,.3);
-}
-.nav--tech.scrolled { background: rgba(0,0,0,.5) !important; backdrop-filter: blur(12px); }
-/* ハンバーガー（モバイル） */
-.nav--tech .nav__hamburger span { background: #fff; }
 
 /* ── セクションラッパー ── */
 .tech-sections { display: block; }
