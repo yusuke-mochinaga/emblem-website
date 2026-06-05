@@ -110,7 +110,7 @@ It is an advance in human freedom.`,
   },
   {
     id: 'vision',
-    num: 'NEXT',
+    num: 'NEXT UP',
     visible: true,
     media: {
       type: 'photo',
@@ -289,10 +289,10 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
 
   /* アニメーション遅延の定義 */
   const DELAYS = {
-    'tech-sec__anim--num':      800,  // ms
-    'tech-sec__anim--title':    800,
-    'tech-sec__anim--title-en': 1400,
-    'tech-sec__anim--body':     1900,
+    'tech-sec__anim--num':      300,  // ms
+    'tech-sec__anim--title':    500,
+    'tech-sec__anim--title-en': 800,
+    'tech-sec__anim--body':     1200,
   };
 
   /* タイマーIDを保持（セクション離脱時にクリア） */

@@ -135,6 +135,37 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
   setLang(currentLang);
 })();
 
+/* ---------- Hero animation（段階的フェードイン）---------- */
+(function initHeroAnimation() {
+  const hero = document.querySelector('.hero--home');
+  if (!hero) return;
+
+  const DELAYS = {
+    'hero-anim--badge': 300,
+    'hero-anim--title': 300,
+    'hero-anim--right-title': 500,
+    'hero-anim--lead': 800,
+    'hero-anim--body': 1200,
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const timers = [];
+        Object.entries(DELAYS).forEach(([cls, delay]) => {
+          const els = hero.querySelectorAll(`.${cls}`);
+          const t = setTimeout(() => {
+            els.forEach(el => el.classList.add('visible'));
+          }, delay);
+          timers.push(t);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(hero);
+})();
+
 /* ---------- Fade-in (Intersection Observer) ---------- */
 (function initFadeIn() {
   const elements = document.querySelectorAll('.fade-in');
