@@ -58,7 +58,7 @@ We are building the place where its future can begin.`,
     visible: true,
     media: {
       type: 'video',
-      src: null,
+      src: 'assets/videos/hovering.mp4',
       alt: '安定したホバリング試験映像'
     },
     date_jp: '2026年3月',
@@ -223,10 +223,10 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
           <!-- タイトル: 日本語と英語を縦に重ねて表示 -->
           <h2 class="tech-sec__title tech-sec__anim tech-sec__anim--title"
               data-jp="${entry.title_jp}"
-              data-en="${entry.title_jp}">${entry.title_jp}</h2>
+              data-en="${entry.title_en}">${entry.title_jp}</h2>
           <p class="tech-sec__title-en tech-sec__anim tech-sec__anim--title-en"
              data-jp="${entry.title_en}"
-             data-en="${entry.title_en}">${entry.title_en}</p>
+             data-en="">${entry.title_en}</p>
 
           <!-- 本文 -->
           <p class="tech-sec__body tech-sec__anim tech-sec__anim--body"
