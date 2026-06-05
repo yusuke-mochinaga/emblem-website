@@ -1,6 +1,27 @@
 /* ============================================================
    Emblem — style.css
    "Precision in White Space"
+
+   構成：
+   • Reset & Base: ブラウザリセット、基本フォント、カラー変数
+   • Typography: h1-h2、caption など見出しスタイル
+   • Layout: container、section、grid system
+   • Navigation: 常時表示 Nav（グラデーション背景）
+   • Components: Button、Badge、Card など再利用可能な部品
+   • Pages: Home（Hero、Tech Grid、News）、Technology、News、Recruit、Team、Privacy
+   • Animations: Fade-in、Scroll-snap、Transform など
+
+   色体系（CSS 変数）：
+   • --void-black: #111111（最濃黒）
+   • --ink: #1A1A1A（本文）
+   • --white: #FFFFFF
+   • --stone-50/100/200/400/600/800: グレースケール
+
+   レスポンシブ：
+   • Desktop: 1200px
+   • Tablet: 768px-1199px
+   • Mobile: 767px 以下
+   • @media (max-width: 768px) で Mobile 対応
    ============================================================ */
 
 /* ---------- Reset & Base ---------- */

@@ -1,20 +1,29 @@
 /* ============================================================
    Emblem — news.js
 
-   役割1: NEWS_ITEMS データの管理
-     index.html の Newsカルーセル帯（最新4件）の表示に使用する。
+   役割：
+   • NEWS_ITEMS 配列でニュースデータを管理
+   • index.html の News カルーセル帯（最新 4 件）をレンダリング
+   • id="home-news-band" コンテナに動的にカード要素を挿入
 
-   役割2: index.html 用のNewsカルーセルを自動生成
-     id="home-news-band" のコンテナにカードを挿入する。
+   重要な注意事項：
+   ⚠️  news.html のニュース一覧ページはこのファイルとは独立している
+       news.html の id="news-list" は HTML で直書きされており、
+       このファイルの変更は自動で反映されない
 
-   ⚠️ news.html のニュース一覧はこのファイルとは独立している。
-      news.html は id="news-list" 内に HTML で直書きされている。
-      news.html を更新しても、このファイルは自動で変わらない。
+   【ニュース情報を更新するには — 2 ファイル編集が必須】
+   Step 1: news.html を開く
+           id="news-list" の先頭に新しいカード HTML を追加
 
-   【ニュースを追加するには — 必ず両方やること】
-   Step 1: news.html の id="news-list" の先頭に新しいカードの HTML を追加する
-   Step 2: このファイルの NEWS_ITEMS 配列の先頭にも同じ内容を追加する
-           （index.html の Newsカルーセルに反映させるため）
+   Step 2: このファイル（news.js）を開く
+           NEWS_ITEMS 配列の先頭に同じニュース情報を追加
+           （index.html のカルーセルに反映させるため）
+
+   各ニュースオブジェクトに含める項目：
+   • date_jp / date_en : 日付（JP/EN）
+   • category : カテゴリ（「連携」「採択」「認定」「メディア」など）
+   • title_jp / title_en : ニュースタイトル
+   • link : 外部リンク URL（リンクがない場合は null）
    ============================================================ */
 
 const NEWS_ITEMS = [
