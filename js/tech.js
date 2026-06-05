@@ -69,14 +69,8 @@
      body_en: '...',
      link: null  // or URL
    },
-
-   【表示制御】
-   SHOW_TECH_4 / SHOW_TECH_5: 隠れた項目④⑤を全表示する時のフラグ
    ============================================================ */
 
-/* ── 表示制御 ─────────────────────────────────────────────── */
-const SHOW_TECH_4 = false; // ← true で④「飛行する視界」を公開
-const SHOW_TECH_5 = false; // ← true で⑤「自由な飛行」を公開
 
 /* ── コンテンツデータ ──────────────────────────────────────
    media.type: 'video' | 'photo'
@@ -184,33 +178,6 @@ It is an advance in human freedom.`,
     title_en: 'Vision in Flight',
     body_jp: 'See beyond what you see',
     body_en: 'See beyond what you see',
-    link: null
-  },
-  {
-    id: 'free',
-    num: '05',
-    visible: SHOW_TECH_5,
-    media: {
-      type: 'video',
-      src: null,
-      alt: 'フリーフライト映像'
-    },
-    date_jp: '2026年 予定',
-    date_en: 'Coming 2026',
-    title_jp: '自由な飛行',
-    title_en: 'Free Flight',
-    body_jp: `人は長い間、地面と共に生きてきました。
-道路に沿って移動し、階段を上り、橋を渡る。私たちの身体は、常に地形の制約を受けています。
-飛行は、その関係を変えます。
-前へ進むだけでなく、上へ行くことができる。迂回するのではなく、越えることができる。地形に従うのではなく、空間そのものを使うことができる。
-私たちが追い求めているのは、単なる飛行ではありません。
-人が三次元空間を自由に使うための、新しい身体です。`,
-    body_en: `For most of human history, movement has been shaped by the ground beneath our feet.
-Roads. Stairs. Bridges. Our bodies have always followed the terrain.
-Flight changes that relationship.
-Not only forward, but upward. Not around, but across. Not constrained by geography, but able to use space itself.
-What we are pursuing is more than flight.
-It is a new body for a three-dimensional world.`,
     link: null
   }
 ];
