@@ -135,33 +135,6 @@ const SHOW_TEAM = false; // ← true に変えるだけで全表示
   setLang(currentLang);
 })();
 
-/* ---------- Hero animation（段階的フェードイン）---------- */
-(function initHeroAnimation() {
-  const hero = document.querySelector('.hero--home');
-  if (!hero) return;
-
-  const DELAYS = {
-    'hero-anim--badge': 300,
-    'hero-anim--title': 300,
-    'hero-anim--right-title': 500,
-    'hero-anim--lead': 800,
-    'hero-anim--body': 1200,
-  };
-
-  // 最初にすべての hero-anim 要素に animating クラスを追加
-  hero.querySelectorAll('.hero-anim').forEach(el => {
-    el.classList.add('animating');
-  });
-
-  // その後、指定されたタイミングで visible クラスを追加
-  Object.entries(DELAYS).forEach(([cls, delay]) => {
-    setTimeout(() => {
-      const els = hero.querySelectorAll(`.${cls}`);
-      els.forEach(el => el.classList.add('visible'));
-    }, delay);
-  });
-})();
-
 /* ---------- Fade-in (Intersection Observer) ---------- */
 (function initFadeIn() {
   const elements = document.querySelectorAll('.fade-in');
