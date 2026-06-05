@@ -141,7 +141,7 @@ It is an advance in human freedom.`,
     id: 'vision',
     num: 'NEXT UP',
     visible: true,
-    is_planned: false,
+    is_planned: true,
     media: {
       type: 'photo',
       src: 'assets/images/next_goggle_2.jpg',
