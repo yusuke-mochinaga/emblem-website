@@ -8,13 +8,48 @@
    • index.html: 最新3つだけを tech grid に自動表示
    • "NEXT UP" セクション: 4番目の visible エントリを自動表示
 
-   【新しい Tech を追加する際の流れ】
-   1. TECH_ENTRIES 配列の末尾に新エントリを追加
-   2. 既存の4番目の項目の visible を false に変更
-   3. 自動で反映：
-      → Technology ページに新エントリが追加
-      → Home page が最新3つに更新（だるま落とし）
-      → "NEXT UP" が新しい4番目の項目に更新
+   【新しい Tech を追加する際のワークフロー】
+
+   毎回の更新フロー（例：04「飛行する視界」を追加する場合）
+
+   Step 1: 新しいエントリを TECH_ENTRIES に追加
+           {
+             id: 'vision',
+             num: '04',
+             visible: true,
+             media: {...},
+             title_jp: '飛行する視界',
+             ...
+           }
+
+   Step 2: 古い "NEXT UP" エントリの num を数値に変更
+           古い NEXT UP:
+           {
+             id: 'free',
+             num: 'NEXT UP',  // ← 'NEXT UP' から '05' に変更
+             ...
+           }
+           ↓
+           {
+             id: 'free',
+             num: '05',
+             visible: true,
+             ...
+           }
+
+   Step 3: 新しい NEXT UP を追加
+           {
+             id: 'next-upcoming',
+             num: 'NEXT UP',  // ← 必ず 'NEXT UP' で指定
+             visible: true,
+             title_jp: '戦艦間海上移動',
+             ...
+           }
+
+   自動で反映：
+   ✓ Technology ページ: 04〜05が新しく表示
+   ✓ Home page grid: 最新3つ（02,03,04）に更新
+   ✓ NEXT UP セクション: 新しい項目に更新
 
    【テンプレート】新しいエントリを追加する時のコピペ用
    {

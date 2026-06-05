@@ -123,15 +123,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ============================================================
-     Home page NEXT UP セクション生成（4番目の visible エントリ）
+     Home page NEXT UP セクション生成
+
+     自動検出：num='NEXT UP' のエントリを探す
+     これにより、毎回の更新時に自動で NEXT UP が更新される
    ============================================================ */
   function renderNextUp() {
-    if (visibleEntries.length < 4) {
-      console.warn('home-tech-grid.js: 4番目の項目がないため、NEXT UP を表示できません。');
+    // num='NEXT UP' のエントリを探す
+    const nextEntry = TECH_ENTRIES.find(e => e.num === 'NEXT UP' && e.visible);
+
+    if (!nextEntry) {
+      console.warn('home-tech-grid.js: num="NEXT UP" のエントリが見つかりません。');
       return;
     }
-
-    const nextEntry = visibleEntries[3];
 
     function renderMedia(entry) {
       if (entry.media?.src) {
