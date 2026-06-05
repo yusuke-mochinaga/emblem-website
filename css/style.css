@@ -2811,6 +2811,7 @@ body.home-page {
   object-fit: cover;
   opacity: 0.85;
   transition: opacity 0.3s ease, transform 0.4s ease;
+  display: block;
 }
 
 /* プレースホルダー */

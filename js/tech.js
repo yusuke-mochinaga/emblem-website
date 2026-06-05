@@ -32,8 +32,8 @@ const TECH_ENTRIES = [
       src: 'assets/images/truss_image.jpg',
       alt: '加賀市試験フィールド 上空からの俯瞰写真'
     },
-    date_jp: '2025年12月',
-    date_en: 'Dec 2025',
+    date_jp: 'December 2025',
+    date_en: 'December 2025',
     title_jp: '人が空を飛ぶフィールド',
     title_en: 'A Field for Human Flight',
     body_jp: `飛行機には空港があります。
@@ -61,8 +61,8 @@ We are building the place where its future can begin.`,
       src: 'assets/videos/hovering.mp4',
       alt: '安定したホバリング試験映像'
     },
-    date_jp: '2026年3月',
-    date_en: 'Mar 2026',
+    date_jp: 'March 2026',
+    date_en: 'March 2026',
     title_jp: '身体と飛行',
     title_en: 'Flight Should Follow the Body',
     body_jp: `私たちは、操縦桿を巧みに扱うことが飛行の本質だとは考えていません。
@@ -89,7 +89,7 @@ That journey begins here.`,
       src: null,
       alt: 'ハンズフリーホバリング映像'
     },
-    date_jp: '2026年5月',
+    date_jp: 'May 2026',
     date_en: 'May 2026',
     title_jp: '身体を解放する',
     title_en: 'Freeing the Hands',
