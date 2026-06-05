@@ -72,18 +72,63 @@
 
 ---
 
-### 飛行試験を追加したい
+### Tech を追加したい（技術ページのセクション）
 
-**Step 1**: `js/data.js` の `TECH_TESTS` 配列の**先頭**に新しい試験を追加する。
+**js/tech.js のみを編集** — technology.html と index.html は自動で更新されます。
 
-**Step 2**: `technology.html` の Featured Grid を手動で更新する。
-- 現在の「左大枠（最新動画）」→ `archiveItems` 内のHTMLに移動不要（JSが自動処理）
-- 左大枠のvideo srcとリンク先を新しい試験に書き換える
-- 右上を元の左大枠の内容に書き換える
-- 右下を元の右上の内容に書き換える
+**Step 1**: 現在の「NEXT UP」エントリを本番エントリに変更する
 
-**Step 3**: `technology/[新しいslug].html` を既存の個別ページから複製して作成する。
-変更箇所: タイトル・日付・動画src・実施内容・前後ナビのリンクと名前。
+`TECH_ENTRIES` 配列の「NEXT UP」セクションを見つけて、以下を変更：
+
+```javascript
+{
+  id: 'vision',
+  num: 'NEXT UP',          // ← '04' に変更（新しいnum）
+  visible: true,
+  is_planned: true,        // ← false に変更
+  media: {
+    type: 'photo',
+    src: 'assets/images/next_goggle_2.jpg',  // ← 新しい素材に差し替え
+    alt: 'REKKIEゴーグルを着用した飛行写真'  // ← 説明を更新
+  },
+  date_jp: 'August 2026',
+  date_en: 'August 2026',
+  title_jp: '飛行する視界',       // ← タイトルを更新
+  title_en: 'Vision in Flight',
+  body_jp: 'See beyond what you see',  // ← 本文を更新
+  body_en: 'See beyond what you see',
+  link: null
+}
+```
+
+**Step 2**: 新しい「NEXT UP」エントリを配列末尾に追加する
+
+```javascript
+{
+  id: 'next-feature',    // ← 新しいID（ユニークな名前）
+  num: 'NEXT UP',
+  visible: true,
+  is_planned: true,      // ← これは必ず true
+  media: {
+    type: 'photo',       // または 'video'
+    src: 'assets/images/coming-soon.jpg',  // または null でプレースホルダー表示
+    alt: '次の技術の説明文'
+  },
+  date_jp: 'Coming Soon',
+  date_en: 'Coming Soon',
+  title_jp: '次の技術名',
+  title_en: 'Next Feature Name',
+  body_jp: '説明文（日本語）',
+  body_en: 'Description (English)',
+  link: null
+}
+```
+
+**自動更新の仕組み：**
+- `is_planned: false` のエントリから最新3件を自動抽出
+- Home page の tech grid に最新3件を自動表示（最新→2番目→3番目）
+- Technology page に全セクション（は自動生成）
+- NEXT UP は常に最後のセクション（暗くぼかし表示）
 
 ---
 

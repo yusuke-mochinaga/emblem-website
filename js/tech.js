@@ -1,87 +1,40 @@
 /* ============================================================
    Emblem — tech.js
-   Technology ページ＋ Home ページの Tech Grid を一元管理
+   Technology ページ + Home ページ Tech Grid の自動同期
 
    【データソース】
    TECH_ENTRIES 配列が唯一の情報源：
    • technology.html: すべての visible なエントリをセクションに変換
-   • index.html: 最新3つだけを tech grid に自動表示
-   • "NEXT UP" セクション: 4番目の visible エントリを自動表示
+   • index.html: is_planned: false の最新3つを tech grid に自動表示
+   • NEXT UP セクション: is_planned: true のエントリを自動表示（暗くぼかし表示）
 
-   【新しい Tech を追加する際のワークフロー】
+   【コンテンツを追加・更新するには】
+   TECH_ENTRIES 配列のみ編集する。
+   - 新しいエントリを追加 → 配列に追記
+   - 素材の差し替え → media.src を変更
+   - Tech を本番化 → is_planned: true → false に変更
 
-   毎回の更新フロー（例：04「飛行する視界」を追加する場合）
-
-   Step 1: 新しいエントリを TECH_ENTRIES に追加
-           {
-             id: 'vision',
-             num: '04',
-             visible: true,
-             media: {...},
-             title_jp: '飛行する視界',
-             ...
-           }
-
-   Step 2: 古い "NEXT UP" エントリの num を数値に変更
-           古い NEXT UP:
-           {
-             id: 'free',
-             num: 'NEXT UP',  // ← 'NEXT UP' から '05' に変更
-             ...
-           }
-           ↓
-           {
-             id: 'free',
-             num: '05',
-             visible: true,
-             ...
-           }
-
-   Step 3: 新しい NEXT UP を追加
-           {
-             id: 'next-upcoming',
-             num: 'NEXT UP',  // ← 必ず 'NEXT UP' で指定
-             visible: true,
-             title_jp: '戦艦間海上移動',
-             ...
-           }
-
-   自動で反映：
-   ✓ Technology ページ: 04〜05が新しく表示
-   ✓ Home page grid: 最新3つ（02,03,04）に更新
-   ✓ NEXT UP セクション: 新しい項目に更新
-
-   【テンプレート】新しいエントリを追加する時のコピペ用
-   {
-     id: 'new-id',
-     num: '05',  // または '06', '07'...
-     visible: true,
-     media: {
-       type: 'photo',  // or 'video'
-       src: 'assets/images/xxxxx.jpg',
-       alt: 'Description'
-     },
-     date_jp: 'Month Year',
-     date_en: 'Month Year',
-     title_jp: '日本語タイトル',
-     title_en: 'English Title',
-     body_jp: '...',
-     body_en: '...',
-     link: null  // or URL
-   },
    ============================================================ */
-
-
 /* ── コンテンツデータ ──────────────────────────────────────
-   media.type: 'video' | 'photo'
-   media.src:  素材のパス。未入手の場合は null（プレースホルダー表示）
-   link:       「続きを読む」のリンク先。個別ページがあれば設定。
+   media.type:  'video' | 'photo'
+   media.src:   素材のパス。未入手の場合は null（プレースホルダー表示）
+   is_planned:  true=NEXT UP（準備中）/ false=本番エントリ
+   link:        「続きを読む」のリンク先。個別ページがあれば設定。
+
+   【新しいTechを追加する時の作業】
+   1. 現在の NEXT UP エントリ（is_planned: true）を本番化：
+      - num を 'NEXT UP' → '04'（等）に変更
+      - is_planned を true → false に変更
+      - 本文・素材を更新
+   2. 配列末尾に新しい NEXT UP を追加（is_planned: true）
+   → HOME PAGE と TECHNOLOGY PAGE が自動更新される
    ─────────────────────────────────────────────────────────── */
 const TECH_ENTRIES = [
   {
     id: 'field',
     num: '01',
     visible: true,
+    is_planned: false,
     media: {
       type: 'photo',
       src: 'assets/images/truss_image.jpg',
@@ -111,6 +64,7 @@ We are building the place where its future can begin.`,
     id: 'body',
     num: '02',
     visible: true,
+    is_planned: false,
     media: {
       type: 'video',
       src: 'assets/videos/hovering.mp4',
@@ -139,6 +93,7 @@ That journey begins here.`,
     id: 'hands',
     num: '03',
     visible: true,
+    is_planned: false,
     media: {
       type: 'video',
       src: null,
@@ -167,6 +122,7 @@ It is an advance in human freedom.`,
     id: 'vision',
     num: 'NEXT UP',
     visible: true,
+    is_planned: true,
     media: {
       type: 'photo',
       src: 'assets/images/next_goggle_2.jpg',
@@ -194,6 +150,44 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
 
   container.innerHTML = visibleEntries.map((entry, index) => {
 
+    /* NEXT UP（is_planned: true）の場合は専用のNext Coming表示 */
+    if (entry.is_planned) {
+      return `
+        <section class="tech-sec tech-sec--next-coming" id="tech-sec-${entry.id}"
+                 data-index="${index}" data-id="${entry.id}">
+          <div class="tech-sec__overlay" style="background:rgba(0,0,0,0.7)"></div>
+          ${entry.media.src
+            ? (entry.media.type === 'video'
+              ? `<video class="tech-sec__media" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                   <source src="${entry.media.src}" type="video/mp4">
+                 </video>`
+              : `<img class="tech-sec__media" src="${entry.media.src}" alt="${entry.media.alt}" loading="lazy" style="filter:blur(4px);opacity:0.35">`)
+            : `<div class="tech-sec__placeholder">
+                 <div class="tech-sec__ph-img" style="font-size:48px;opacity:0.15">?</div>
+               </div>`
+          }
+          <div class="tech-sec__content">
+            <p class="tech-sec__num tech-sec__anim tech-sec__anim--num"
+               data-jp="NEXT UP — Technology"
+               data-en="NEXT UP — Technology">NEXT UP — Technology</p>
+            <h2 class="tech-sec__title tech-sec__anim tech-sec__anim--title"
+                data-jp="${entry.title_jp}"
+                data-en="${entry.title_en}">${entry.title_jp}</h2>
+            <p class="tech-sec__title-en tech-sec__anim tech-sec__anim--title-en"
+               data-jp="${entry.title_en}"
+               data-en="">${entry.title_en}</p>
+            <p class="tech-sec__date tech-sec__anim tech-sec__anim--body"
+               data-jp="${entry.date_jp}"
+               data-en="${entry.date_en}">${entry.date_jp}</p>
+          </div>
+          <div class="tech-sec__scroll-ind" aria-hidden="true">
+            <div class="tech-sec__scroll-line"></div>
+            <span class="tech-sec__scroll-label">SCROLL</span>
+          </div>
+        </section>`;
+    }
+
+    /* 通常エントリ（is_planned: false）の場合 */
     /* 素材エリア: src があれば video/img、なければプレースホルダー */
     let mediaHTML = '';
     if (entry.media.src) {
@@ -399,4 +393,131 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
       }
     });
   });
+})();
+
+/* ============================================================
+   Home page Tech Grid 自動更新
+
+   index.html の home-tech-grid 内の3つのセル（スロット）に
+   TECH_ENTRIES の is_planned: false の最新3件を自動で流し込む。
+
+   【更新の仕組み】
+   - is_planned: false のエントリを配列の末尾から3件取得
+     （配列の後ろ = 番号が新しい = 最新）
+   - デスクトップ: slot-large(最新)・slot-top(2番目)・slot-bottom(3番目)
+   - モバイル:     slot-top(最新)・slot-left(2番目)・slot-right(3番目)
+   - HTMLの構造（クラス・位置）は変えず、中身だけ差し替える
+
+   【次のtechを追加する時の作業】
+   js/tech.js の TECH_ENTRIES のみ編集すればよい:
+   1. 既存のNEXT UPエントリの is_planned を true → false に変更
+      num を 'NEXT UP' → '04'（等）に変更
+      本文・素材を更新
+   2. 新しいNEXT UPエントリを配列末尾に追加（is_planned: true）
+   → tech page・home pageが自動で更新される
+   ============================================================ */
+(function syncHomeTechGrid() {
+
+  /* index.html 以外では実行しない */
+  const largeSlot  = document.getElementById('htg-slot-large');
+  const topSlot    = document.getElementById('htg-slot-top');
+  const bottomSlot = document.getElementById('htg-slot-bottom');
+  const mobTopSlot  = document.getElementById('htg-mob-slot-top');
+  const mobLeftSlot = document.getElementById('htg-mob-slot-left');
+  const mobRightSlot = document.getElementById('htg-mob-slot-right');
+
+  /* いずれのスロットも存在しない = index.html以外 → 終了 */
+  if (!largeSlot && !mobTopSlot) return;
+
+  /* is_planned: false のエントリを配列末尾から最大3件取得
+     配列の末尾 = 最新のエントリ */
+  const normalEntries = TECH_ENTRIES.filter(e => e.visible && !e.is_planned);
+  const latest  = normalEntries[normalEntries.length - 1]; // 最新
+  const second  = normalEntries[normalEntries.length - 2]; // 2番目
+  const third   = normalEntries[normalEntries.length - 3]; // 3番目
+
+  /* セルの中身を生成する関数 */
+  function buildCellContent(entry) {
+    if (!entry) return '';
+
+    /* 素材HTML */
+    let mediaHTML = '';
+    if (entry.media && entry.media.src) {
+      if (entry.media.type === 'video') {
+        mediaHTML = `<video class="htg-cell-media" autoplay muted loop playsinline
+                            preload="metadata" aria-hidden="true">
+                       <source src="${entry.media.src}" type="video/mp4">
+                     </video>`;
+      } else {
+        mediaHTML = `<img class="htg-cell-image" src="${entry.media.src}"
+                         alt="${entry.media.alt}" loading="lazy">`;
+      }
+    }
+    /* プレースホルダー */
+    if (!mediaHTML) {
+      mediaHTML = `<div class="htg-cell-placeholder">
+                     <div class="htg-ph-icon"><div class="htg-ph-tri"></div></div>
+                     <p class="htg-ph-label">${entry.media ? entry.media.type.toUpperCase() : 'PHOTO'} PLACEHOLDER</p>
+                   </div>`;
+    }
+
+    return `
+      ${mediaHTML}
+      <div class="htg-cell-overlay"></div>
+      <div class="htg-cell-meta">
+        <p class="htg-cell-num">${entry.num}</p>
+        <h3 class="htg-cell-title"
+            data-jp="${entry.title_jp}"
+            data-en="${entry.title_en}">${entry.title_jp}</h3>
+        <p class="htg-cell-en"
+           data-jp="${entry.title_en}"
+           data-en="${entry.title_en}">${entry.title_en}</p>
+        <span class="htg-cell-arr">→</span>
+      </div>`;
+  }
+
+  /* リンク先URLを生成する関数 */
+  function buildHref(entry) {
+    return entry ? `technology.html#tech-sec-${entry.id}` : 'technology.html';
+  }
+
+  /* ── デスクトップ用スロットを更新 ── */
+  if (largeSlot && latest) {
+    largeSlot.innerHTML = buildCellContent(latest);
+    largeSlot.href = buildHref(latest);
+  }
+  if (topSlot && second) {
+    topSlot.innerHTML = buildCellContent(second);
+    topSlot.href = buildHref(second);
+  }
+  if (bottomSlot && third) {
+    bottomSlot.innerHTML = buildCellContent(third);
+    bottomSlot.href = buildHref(third);
+  }
+
+  /* ── モバイル用スロットを更新 ── */
+  if (mobTopSlot && latest) {
+    mobTopSlot.innerHTML = buildCellContent(latest);
+    mobTopSlot.href = buildHref(latest);
+  }
+  if (mobLeftSlot && second) {
+    mobLeftSlot.innerHTML = buildCellContent(second);
+    mobLeftSlot.href = buildHref(second);
+  }
+  if (mobRightSlot && third) {
+    mobRightSlot.innerHTML = buildCellContent(third);
+    mobRightSlot.href = buildHref(third);
+  }
+
+  /* 言語切り替えが既に適用済みの場合は再適用
+     （main.jsのsetLangよりtech.jsが後に実行される場合の対策） */
+  const savedLang = localStorage.getItem('emblem-lang') || 'jp';
+  if (savedLang === 'en') {
+    document.querySelectorAll('[data-jp]').forEach(el => {
+      if (!el.dataset.html) {
+        el.textContent = el.dataset.en || el.dataset.jp;
+      }
+    });
+  }
+
 })();
