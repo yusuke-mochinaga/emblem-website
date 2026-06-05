@@ -110,30 +110,19 @@ It is an advance in human freedom.`,
   },
   {
     id: 'vision',
-    num: '04',
-    visible: SHOW_TECH_4,
+    num: 'NEXT',
+    visible: true,
     media: {
       type: 'photo',
-      src: null,
+      src: 'assets/images/next_goggle',
       alt: 'REKKIEゴーグルを着用した飛行写真'
     },
-    date_jp: '2026年 予定',
-    date_en: 'Coming 2026',
+    date_jp: 'August 2026',
+    date_en: 'August 2026',
     title_jp: '飛行する視界',
     title_en: 'Vision in Flight',
-    body_jp: `空へ上がると、人は世界を違う形で見るようになります。
-遠くまで見える。広く見える。そして、これまで見えなかったつながりが見える。
-飛行は、移動手段であると同時に、人間の知覚を拡張する技術でもあります。
-私たちは、身体と飛行を結びつけるだけでなく、身体と情報との新しい関係を探究しています。
-必要な情報が、必要な瞬間に、自然に視界へ流れ込む。情報を探しにいくのではなく、情報の方が身体に寄り添う。
-空を飛びながら、世界を見続けることができる。それは、飛行する身体のための新しい視界です。`,
-    body_en: `As we rise into the air, we begin to see the world differently.
-Farther. Wider. And with connections that were previously invisible.
-Flight is not only a means of movement. It is also a technology that expands human perception.
-Our work is not only about connecting the body to flight, but also about exploring a new relationship between the body and information.
-The right information flows naturally into view, at the moment it is needed. Information no longer needs to be searched for. Instead, it moves closer to the body.
-A person can remain immersed in the world while flying.
-It is a new vision for a flying body.`,
+    body_jp: 'See beyond what you see',
+    body_en: 'See beyond what you see',
     link: null
   },
   {
