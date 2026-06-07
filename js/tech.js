@@ -59,8 +59,8 @@ const TECH_ENTRIES = [
       src: 'assets/images/truss_image.jpg',
       alt: '加賀市試験フィールド 上空からの俯瞰写真'
     },
-    date_jp: 'December 2025',
-    date_en: 'December 2025',
+    date_jp: 'October 2025',
+    date_en: 'October 2025',
     title_jp: '人が空を飛ぶフィールド',
     title_en: 'A Field for Human Flight',
     body_jp: `飛行機には空港があります。
@@ -86,7 +86,7 @@ We are building the place where its future can begin.`,
     is_planned: false,
     media: {
       type: 'video',
-      src: 'assets/videos/hovering.mp4',
+      src: 'assets/videos/hovering_2.mp4',
       alt: '安定したホバリング試験映像'
     },
     date_jp: 'March 2026',
