@@ -417,49 +417,41 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
 /* ============================================================
    Home page Tech Grid 自動更新
 
-   index.html の home-tech-grid 内の3つのセル（スロット）に
-   TECH_ENTRIES の is_planned: false の最新3件を自動で流し込む。
+   index.html の home-tech-grid 内の3セルに
+   TECH_ENTRIES の最新3件（is_planned: false）を自動で流し込む。
 
-   【更新の仕組み】
-   - is_planned: false のエントリを配列の末尾から3件取得
-     （配列の後ろ = 番号が新しい = 最新）
-   - デスクトップ: slot-large(最新)・slot-top(2番目)・slot-bottom(3番目)
-   - モバイル:     slot-top(最新)・slot-left(2番目)・slot-right(3番目)
-   - HTMLの構造（クラス・位置）は変えず、中身だけ差し替える
+   【対応するスロットID】
+   デスクトップ:
+     htg-slot-large  → 左下大枠（最新）
+     htg-slot-top    → 右上（2番目）
+     htg-slot-bottom → 右下（3番目）
+   モバイル:
+     htg-mob-slot-top   → 全幅大枠（最新）
+     htg-mob-slot-left  → 下段左（2番目）
+     htg-mob-slot-right → 下段右（3番目）
 
    【次のtechを追加する時の作業】
    js/tech.js の TECH_ENTRIES のみ編集すればよい:
-   1. 既存のNEXT UPエントリの is_planned を true → false に変更
-      num を 'NEXT UP' → '04'（等）に変更
-      本文・素材を更新
+   1. 既存NEXT UPの is_planned を false に・num を '04' 等に変更
    2. 新しいNEXT UPエントリを配列末尾に追加（is_planned: true）
-   → tech page・home pageが自動で更新される
+   → technology.html と index.html が自動で更新される
    ============================================================ */
 (function syncHomeTechGrid() {
 
   /* index.html 以外では実行しない */
-  const largeSlot  = document.getElementById('htg-slot-large');
-  const topSlot    = document.getElementById('htg-slot-top');
-  const bottomSlot = document.getElementById('htg-slot-bottom');
-  const mobTopSlot  = document.getElementById('htg-mob-slot-top');
-  const mobLeftSlot = document.getElementById('htg-mob-slot-left');
-  const mobRightSlot = document.getElementById('htg-mob-slot-right');
+  if (!document.getElementById('htg-slot-large') &&
+      !document.getElementById('htg-mob-slot-top')) return;
 
-  /* いずれのスロットも存在しない = index.html以外 → 終了 */
-  if (!largeSlot && !mobTopSlot) return;
+  /* is_planned: false のエントリを配列末尾（最新）から3件取得 */
+  const normal = TECH_ENTRIES.filter(e => e.visible && !e.is_planned);
+  const latest = normal[normal.length - 1];
+  const second = normal[normal.length - 2];
+  const third  = normal[normal.length - 3];
 
-  /* is_planned: false のエントリを配列末尾から最大3件取得
-     配列の末尾 = 最新のエントリ */
-  const normalEntries = TECH_ENTRIES.filter(e => e.visible && !e.is_planned);
-  const latest  = normalEntries[normalEntries.length - 1]; // 最新
-  const second  = normalEntries[normalEntries.length - 2]; // 2番目
-  const third   = normalEntries[normalEntries.length - 3]; // 3番目
-
-  /* セルの中身を生成する関数 */
-  function buildCellContent(entry) {
+  /* セルの内部HTMLを生成する */
+  function buildCellInner(entry) {
     if (!entry) return '';
 
-    /* 素材HTML */
     let mediaHTML = '';
     if (entry.media && entry.media.src) {
       if (entry.media.type === 'video') {
@@ -468,20 +460,20 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
                        <source src="${entry.media.src}" type="video/mp4">
                      </video>`;
       } else {
-        mediaHTML = `<img class="htg-cell-image" src="${entry.media.src}"
-                         alt="${entry.media.alt}" loading="lazy">`;
+        mediaHTML = `<img class="htg-cell-image"
+                         src="${entry.media.src}"
+                         alt="${entry.media.alt || ''}"
+                         loading="lazy">`;
       }
-    }
-    /* プレースホルダー */
-    if (!mediaHTML) {
+    } else {
       mediaHTML = `<div class="htg-cell-placeholder">
                      <div class="htg-ph-icon"><div class="htg-ph-tri"></div></div>
-                     <p class="htg-ph-label">${entry.media ? entry.media.type.toUpperCase() : 'PHOTO'} PLACEHOLDER</p>
+                     <p class="htg-ph-label">VIDEO / PHOTO</p>
+                     <p class="htg-ph-desc">${entry.title_jp}</p>
                    </div>`;
     }
 
-    return `
-      ${mediaHTML}
+    return `${mediaHTML}
       <div class="htg-cell-overlay"></div>
       <div class="htg-cell-meta">
         <p class="htg-cell-num">${entry.num}</p>
@@ -495,41 +487,28 @@ const visibleEntries = TECH_ENTRIES.filter(e => e.visible);
       </div>`;
   }
 
-  /* リンク先URLを生成する関数 */
   function buildHref(entry) {
     return entry ? `technology.html#tech-sec-${entry.id}` : 'technology.html';
   }
 
-  /* ── デスクトップ用スロットを更新 ── */
-  if (largeSlot && latest) {
-    largeSlot.innerHTML = buildCellContent(latest);
-    largeSlot.href = buildHref(latest);
-  }
-  if (topSlot && second) {
-    topSlot.innerHTML = buildCellContent(second);
-    topSlot.href = buildHref(second);
-  }
-  if (bottomSlot && third) {
-    bottomSlot.innerHTML = buildCellContent(third);
-    bottomSlot.href = buildHref(third);
+  function fillSlot(id, entry) {
+    const el = document.getElementById(id);
+    if (!el || !entry) return;
+    el.innerHTML = buildCellInner(entry);
+    el.href = buildHref(entry);
   }
 
-  /* ── モバイル用スロットを更新 ── */
-  if (mobTopSlot && latest) {
-    mobTopSlot.innerHTML = buildCellContent(latest);
-    mobTopSlot.href = buildHref(latest);
-  }
-  if (mobLeftSlot && second) {
-    mobLeftSlot.innerHTML = buildCellContent(second);
-    mobLeftSlot.href = buildHref(second);
-  }
-  if (mobRightSlot && third) {
-    mobRightSlot.innerHTML = buildCellContent(third);
-    mobRightSlot.href = buildHref(third);
-  }
+  /* デスクトップ用スロットを更新 */
+  fillSlot('htg-slot-large',  latest);
+  fillSlot('htg-slot-top',    second);
+  fillSlot('htg-slot-bottom', third);
 
-  /* 言語切り替えが既に適用済みの場合は再適用
-     （main.jsのsetLangよりtech.jsが後に実行される場合の対策） */
+  /* モバイル用スロットを更新 */
+  fillSlot('htg-mob-slot-top',   latest);
+  fillSlot('htg-mob-slot-left',  second);
+  fillSlot('htg-mob-slot-right', third);
+
+  /* 言語設定を再適用（innerHTML書き換え後に必要） */
   const savedLang = localStorage.getItem('emblem-lang') || 'jp';
   if (savedLang === 'en') {
     document.querySelectorAll('[data-jp]').forEach(el => {
