@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=51">
+  <link rel="stylesheet" href="css/style.css?v=52">
 
   <!-- 構造化データ: Googleの検索結果リッチ表示用 -->
   <script type="application/ld+json">
@@ -163,15 +163,11 @@
     </div>
   </section>
 
-  <!-- ========== TECHNOLOGY — Home section ========== -->
-  <section class="home-tech-grid" id="home-tech">
+  <!-- ↓↓↓ TECH GRID（一時コメントアウト中・復活可能）↓↓↓
+  <section class="home-tech-grid" id="home-tech-grid-legacy">
 
-    <!-- ── デスクトップ用レイアウト ── -->
     <div class="htg-desktop-layout">
-
-      <!-- 左カラム -->
       <div class="htg-left">
-        <!-- テキストエリア（上1/3） -->
         <div class="htg-text">
           <p class="htg-eyebrow"
              data-jp="Technology" data-en="Technology">Technology</p>
@@ -192,26 +188,15 @@
           <a href="technology.html" class="htg-btn"
              data-jp="View all →" data-en="View all →">View all →</a>
         </div>
-
-        <!-- 左下大枠（最新） -->
         <a href="technology.html" class="htg-cell htg-cell--03" id="htg-slot-large"></a>
       </div>
-
-      <!-- 右カラム -->
       <div class="htg-right">
-        <!-- 右上（2番目） -->
         <a href="technology.html" class="htg-cell htg-cell--02" id="htg-slot-top"></a>
-
-        <!-- 右下（3番目） -->
         <a href="technology.html" class="htg-cell htg-cell--01" id="htg-slot-bottom"></a>
       </div>
-
     </div>
 
-    <!-- ── モバイル用レイアウト ── -->
     <div class="htg-mobile-layout">
-
-      <!-- テキストエリア（モバイル） -->
       <div class="htg-text">
         <p class="htg-eyebrow"
            data-jp="Technology" data-en="Technology">Technology</p>
@@ -234,19 +219,47 @@
              data-jp="View all →" data-en="View all →">View all →</a>
         </div>
       </div>
-
-      <!-- 全幅大枠（最新） -->
       <a href="technology.html" class="htg-cell htg-mob-cell--03" id="htg-mob-slot-top"></a>
-
-      <!-- 下段左・右: 2列 -->
       <div class="htg-mob-row">
-        <!-- 下段左（2番目） -->
         <a href="technology.html" class="htg-cell htg-mob-cell--02" id="htg-mob-slot-left"></a>
-
-        <!-- 下段右（3番目） -->
         <a href="technology.html" class="htg-cell htg-mob-cell--01" id="htg-mob-slot-right"></a>
       </div>
+    </div>
 
+  </section>
+  ↑↑↑ TECH GRID ここまで -->
+
+  <!-- ========== TECHNOLOGY — フルスクリーン版 ========== -->
+  <section class="home-tech-full" id="home-tech">
+
+    <!-- 背景: 02 身体と飛行の動画 -->
+    <video class="home-tech-full__media"
+           autoplay muted loop playsinline
+           preload="metadata" aria-hidden="true">
+      <source src="assets/videos/hovering.mp4" type="video/mp4">
+    </video>
+
+    <!-- オーバーレイ -->
+    <div class="home-tech-full__overlay"></div>
+
+    <!-- コンテンツ: 左下 -->
+    <div class="home-tech-full__content">
+      <p class="home-tech-full__eyebrow"
+         data-jp="Technology" data-en="Technology">Technology</p>
+      <h2 class="home-tech-full__title"
+          data-jp="身体と飛行"
+          data-en="Flight Should Follow the Body">身体と飛行</h2>
+      <p class="home-tech-full__title-en"
+         data-jp="Flight Should Follow the Body"
+         data-en="Flight Should Follow the Body">Flight Should Follow the Body</p>
+      <a href="technology.html" class="home-tech-full__btn"
+         data-jp="View all →" data-en="View all →">View all →</a>
+    </div>
+
+    <!-- スクロールインジケーター -->
+    <div class="home-tech-full__scroll" aria-hidden="true">
+      <div class="home-tech-full__scroll-line"></div>
+      <span class="home-tech-full__scroll-label">SCROLL</span>
     </div>
 
   </section>
