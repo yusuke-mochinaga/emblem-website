@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=51">
+  <link rel="stylesheet" href="css/style.css?v=55">
 </head>
 <body>
 
@@ -195,7 +195,7 @@
           </div>
         </div>
       </div>
-      <p class="roles-note fade-in" style="margin-top:32px;" data-jp="※正社員・業務委託ともに相談可。その他、ご自身の専門性・イノベーションへの情熱をお持ちの方のご連絡をお待ちしております。" data-en="※ Open to full-time and contract. Other specializations welcome.">※正社員・業務委託ともに相談可。その他の専門性も歓迎。</p>
+      <p class="roles-note fade-in" style="margin-top:32px;" data-jp="正社員・業務委託ともにご相談可能です。上記以外の専門分野の方でも、私たちの挑戦に共感いただける方からのご連絡を歓迎します。" data-en="We are open to both full-time and contract arrangements. If your expertise does not fit neatly into the categories above but you believe you can contribute to the future of human flight, we would still love to hear from you.">正社員・業務委託ともにご相談可能です。<br>上記以外の専門分野の方でも、私たちの挑戦に共感いただける方からのご連絡を歓迎します。</p>
     </div>
   </section>
 
@@ -241,13 +241,18 @@
           </div>
 
           <div class="form-group">
+            <label class="form-label" for="age" data-jp="年齢（任意）" data-en="Age (Optional)">年齢（任意）</label>
+            <input class="form-input" type="text" id="age" name="age" placeholder="例：25歳">
+          </div>
+
+          <div class="form-group">
             <label class="form-label" data-jp="専門性（複数選択可）" data-en="Specialty (multiple)">専門性（複数選択可）</label>
             <div class="chips">
-              <button type="button" class="chip" data-jp="ハードウェア" data-en="Hardware">ハードウェア</button>
-              <button type="button" class="chip" data-jp="構造設計" data-en="Structural">構造設計</button>
+              <button type="button" class="chip" data-jp="機体設計・構造設計" data-en="Airframe & Structural Design">機体設計・構造設計</button>
               <button type="button" class="chip" data-jp="制御・組み込み" data-en="Control / Embedded">制御・組み込み</button>
               <button type="button" class="chip" data-jp="電気・電子" data-en="Electrical">電気・電子</button>
               <button type="button" class="chip" data-jp="推進・エンジン" data-en="Propulsion">推進・エンジン</button>
+              <button type="button" class="chip" data-jp="ビジネス・営業" data-en="Business / Sales">ビジネス・営業</button>
               <button type="button" class="chip" data-jp="その他" data-en="Other">その他</button>
             </div>
           </div>
@@ -256,27 +261,20 @@
             <label class="form-label" for="employment" data-jp="雇用形態の希望" data-en="Employment Type">雇用形態の希望</label>
             <select class="form-select" id="employment" name="employment">
               <option value="" disabled selected data-jp="選択してください" data-en="Select">選択してください</option>
-              <option value="fulltime" data-jp="正社員" data-en="Full-time">正社員</option>
-              <option value="contract" data-jp="業務委託" data-en="Contract">業務委託</option>
-              <option value="other" data-jp="その他" data-en="Other">その他</option>
+              <option value="fulltime" data-jp="フルタイム" data-en="Full-time">フルタイム</option>
+              <option value="parttime" data-jp="パートタイム" data-en="Part-time">パートタイム</option>
+              <option value="intern" data-jp="インターン" data-en="Intern">インターン</option>
+              <option value="undecided" data-jp="未定・相談したい" data-en="Undecided / Discuss">未定・相談したい</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="bio" data-jp="経歴概要（最終学歴・直近職歴）,専門性や得意分野,応募理由など" data-en="Background(education & recent work), Specialty & Interests, Reason for Application">経歴概要（最終学歴・直近職歴）</label>
-            <textarea class="form-textarea" id="bio" name="bio" required placeholder="例：東京大学大学院航空宇宙工学専攻修了。〇〇社にて飛行制御ソフトウェア開発に5年従事。"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-check">
-              <input type="checkbox" name="kaga_visit">
-              <span class="form-check-label" data-jp="石川県加賀市での試験キャンペーンへの参加に興味がある" data-en="Interested in joining test campaigns at Kaga City, Ishikawa">石川県加賀市での試験キャンペーンへの参加に興味がある</span>
-            </label>
+            <label class="form-label" for="bio" data-jp="あなたについて教えてください" data-en="Tell us about yourself">あなたについて教えてください<br><span style="font-size:12px;color:var(--stone-600);font-weight:400;">以下を自由にご記入ください。<br>・経歴の概要<br>・専門性や得意分野<br>・これまでで最も誇れる成果<br>・emblemに興味を持った理由</span></label>
+            <textarea class="form-textarea" id="bio" name="bio" required></textarea>
           </div>
 
           <div class="form-actions">
             <button type="submit" class="btn btn--primary" data-jp="送信する →" data-en="Submit →">送信する →</button>
-            <button type="button" class="btn btn--ghost-white" onclick="window.open('https://calendly.com','_blank')" data-jp="💬 Casual chat" data-en="💬 Casual chat">💬 Casual chat</button>
           </div>
         </form>
 
