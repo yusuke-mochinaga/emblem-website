@@ -268,112 +268,113 @@
   <section class="home-news-section">
 
     <!-- セクションヘッダー -->
-    <div class="home-news__header">
-      <h2 class="home-news__title"
-          data-jp="News" data-en="News">News</h2>
-      <a href="news.html" class="home-news__link"
+    <div class="hnj__header">
+      <h2 class="hnj__title" data-jp="News" data-en="News">News</h2>
+      <a href="news.html" class="hnj__link"
          data-jp="View all →" data-en="View all →">View all →</a>
     </div>
 
-    <!-- Milestones（固定・最新順） -->
-    <div class="home-news__milestones">
-      <p class="home-news__section-label"
-         data-jp="Milestones" data-en="Milestones">Milestones</p>
-      <div class="home-news__ms-list">
+    <!-- Milestone: 写真2分割・テキストオーバーレイ -->
+    <div class="hnj__milestones">
 
-        <!-- 最新: ブータン政府 2026年1月 -->
-        <a href="news/bhutan.html" class="home-news__ms-item">
-          <div class="home-news__ms-thumb">
-            <img src="assets/images/bhutan_LOI.png" alt="ブータン政府LOI調印">
+      <a href="news/bhutan.html" class="hnj__ms-card">
+        <img src="assets/images/bhutan_LOI.png"
+             alt="ブータン政府LOI調印" class="hnj__ms-photo">
+        <div class="hnj__ms-overlay"></div>
+        <div class="hnj__ms-content">
+          <p class="hnj__ms-eyebrow"
+             data-jp="Milestone" data-en="Milestone">Milestone</p>
+          <div class="hnj__ms-meta">
+            <span class="hnj__ms-date"
+                  data-jp="2026年1月" data-en="Jan 2026">2026年1月</span>
+            <span class="hnj__ms-badge"
+                  data-jp="連携" data-en="Partnership">連携</span>
           </div>
-          <div class="home-news__ms-body">
-            <div class="home-news__ms-meta">
-              <span class="home-news__ms-date"
-                    data-jp="2026年1月" data-en="Jan 2026">2026年1月</span>
-              <span class="home-news__ms-badge"
-                    data-jp="連携" data-en="Partnership">連携</span>
-            </div>
-            <p class="home-news__ms-title"
-               data-jp="ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。"
-               data-en="LOI signed with the Government of Bhutan. Presented at JETRO Business Seminar.">ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。</p>
-          </div>
-          <span class="home-news__ms-arr" aria-hidden="true">→</span>
-        </a>
+          <p class="hnj__ms-title"
+             data-jp="ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。"
+             data-en="LOI signed with the Government of Bhutan. Presented at JETRO Business Seminar.">ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。</p>
+        </div>
+      </a>
 
-        <!-- JAXA認定 2024年10月 -->
-        <a href="news/jaxa.html" class="home-news__ms-item">
-          <div class="home-news__ms-thumb home-news__ms-thumb--white">
-            <img src="assets/images/js_logo__シグネチャー.png" alt="JAXAスタートアップ">
+      <a href="news/jaxa.html" class="hnj__ms-card">
+        <img src="assets/images/js_logo__シグネチャー.png"
+             alt="JAXAスタートアップ" class="hnj__ms-photo">
+        <div class="hnj__ms-overlay"></div>
+        <div class="hnj__ms-content">
+          <p class="hnj__ms-eyebrow"
+             data-jp="Milestone" data-en="Milestone">Milestone</p>
+          <div class="hnj__ms-meta">
+            <span class="hnj__ms-date"
+                  data-jp="2024年10月" data-en="Oct 2024">2024年10月</span>
+            <span class="hnj__ms-badge"
+                  data-jp="認定" data-en="Certified">認定</span>
           </div>
-          <div class="home-news__ms-body">
-            <div class="home-news__ms-meta">
-              <span class="home-news__ms-date"
-                    data-jp="2024年10月" data-en="Oct 2024">2024年10月</span>
-              <span class="home-news__ms-badge"
-                    data-jp="認定" data-en="Certified">認定</span>
-            </div>
-            <p class="home-news__ms-title"
-               data-jp="JAXAスタートアップ認定。航空技術部門から2社目。"
-               data-en="Certified as a JAXA Startup. Second company from the aviation technology division.">JAXAスタートアップ認定。航空技術部門から2社目。</p>
-          </div>
-          <span class="home-news__ms-arr" aria-hidden="true">→</span>
-        </a>
+          <p class="hnj__ms-title"
+             data-jp="JAXAスタートアップ認定。航空技術部門から2社目。"
+             data-en="Certified as a JAXA Startup. Second company from the aviation technology division.">JAXAスタートアップ認定。航空技術部門から2社目。</p>
+        </div>
+      </a>
 
-      </div>
     </div>
 
-    <!-- Updates（横スクロールカルーセル） -->
-    <div class="home-news__updates">
-      <p class="home-news__section-label"
+    <!-- Updates: 縦スクロールリスト -->
+    <div class="hnj__updates">
+      <p class="hnj__updates-label"
          data-jp="Updates" data-en="Updates">Updates</p>
-      <div class="home-news__carousel">
+      <div class="hnj__updates-list">
 
-        <a href="news/mozambique.html" class="home-news__card">
-          <div class="home-news__card-img">
+        <a href="news/mozambique.html" class="hnj__update-item">
+          <div class="hnj__update-thumb">
             <img src="assets/images/mozambique_LOI.jpg" alt="モザンビーク政府LOI調印">
           </div>
-          <div class="home-news__card-body">
-            <div class="home-news__card-meta">
-              <span data-jp="2025年5月" data-en="May 2025">2025年5月</span>
-              <span class="home-news__card-badge"
+          <div class="hnj__update-body">
+            <div class="hnj__update-meta">
+              <span class="hnj__update-date"
+                    data-jp="2025年5月" data-en="May 2025">2025年5月</span>
+              <span class="hnj__update-badge"
                     data-jp="連携" data-en="Partnership">連携</span>
             </div>
-            <p class="home-news__card-title"
+            <p class="hnj__update-title"
                data-jp="モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。"
                data-en="LOI signed with the Government of Mozambique. Flight footage exhibited at Osaka Expo.">モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。</p>
           </div>
+          <span class="hnj__update-arr" aria-hidden="true">→</span>
         </a>
 
-        <a href="news/nedo.html" class="home-news__card">
-          <div class="home-news__card-img home-news__card-img--white">
+        <a href="news/nedo.html" class="hnj__update-item">
+          <div class="hnj__update-thumb hnj__update-thumb--white">
             <img src="assets/images/NEDO_logo.svg" alt="NEDO">
           </div>
-          <div class="home-news__card-body">
-            <div class="home-news__card-meta">
-              <span data-jp="2025年5月" data-en="May 2025">2025年5月</span>
-              <span class="home-news__card-badge"
+          <div class="hnj__update-body">
+            <div class="hnj__update-meta">
+              <span class="hnj__update-date"
+                    data-jp="2025年5月" data-en="May 2025">2025年5月</span>
+              <span class="hnj__update-badge"
                     data-jp="採択" data-en="Award">採択</span>
             </div>
-            <p class="home-news__card-title"
-               data-jp="NEDO先導研究プログラム採択（2024–26）。"
-               data-en="Selected for NEDO Leading Research Program (2024–26).">NEDO先導研究プログラム採択（2024–26）。</p>
+            <p class="hnj__update-title"
+               data-jp="NEDO先導研究プログラム採択（2024–26）。JAXA・ミズノ・SOMと連携。"
+               data-en="Selected for NEDO Leading Research Program (2024–26). Partnering with JAXA, Mizuno, and SOM.">NEDO先導研究プログラム採択（2024–26）。JAXA・ミズノ・SOMと連携。</p>
           </div>
+          <span class="hnj__update-arr" aria-hidden="true">→</span>
         </a>
 
-        <a href="news/kaga.html" class="home-news__card">
-          <div class="home-news__card-img home-news__card-img--white">
+        <a href="news/kaga.html" class="hnj__update-item">
+          <div class="hnj__update-thumb hnj__update-thumb--white">
             <img src="assets/images/kagashi_mark_mono.jpg" alt="加賀市">
           </div>
-          <div class="home-news__card-body">
-            <div class="home-news__card-meta">
-              <span data-jp="2024年2月" data-en="Feb 2024">2024年2月</span>
-              <span class="home-news__card-badge"
+          <div class="hnj__update-body">
+            <div class="hnj__update-meta">
+              <span class="hnj__update-date"
+                    data-jp="2024年2月" data-en="Feb 2024">2024年2月</span>
+              <span class="hnj__update-badge"
                     data-jp="連携" data-en="Partnership">連携</span>
             </div>
-            <p class="home-news__card-title"
+            <p class="hnj__update-title"
                data-jp="石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。"
                data-en="Partnership agreement concluded with Kaga City, Ishikawa.">石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。</p>
           </div>
+          <span class="hnj__update-arr" aria-hidden="true">→</span>
         </a>
 
       </div>
