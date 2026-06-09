@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=55">
+  <link rel="stylesheet" href="css/style.css?v=56">
 </head>
 <body>
 
@@ -96,80 +96,118 @@
         <button class="filter-tab" data-filter="連携" role="tab" data-jp="連携" data-en="Partnership">連携</button>
         <button class="filter-tab" data-filter="採択" role="tab" data-jp="採択・認定" data-en="Award / Certified">採択・認定</button>
         <button class="filter-tab" data-filter="メディア" role="tab" data-jp="メディア" data-en="Media">メディア</button>
+        <button class="filter-tab" data-filter="イベント" role="tab" data-jp="イベント" data-en="Event">イベント</button>
       </div>
 
-      <div class="news-grid" id="news-list">
-        <!-- ニュースカード: 最新順に直書きする -->
+      <!-- ── Milestones（固定・最新順） ── -->
+      <div class="news-milestones">
+        <p class="news-milestones__label"
+           data-jp="Milestones" data-en="Milestones">Milestones</p>
+        <div class="news-milestones__list">
 
-        <!-- 1件目: 2026年1月 ブータン政府 -->
-        <a href="news/bhutan.html" class="news-card-full fade-in" data-category="連携">
-          <div class="news-card-full__img news-card-full__img--photo">
-            <img src="assets/images/bhutan_LOI.png" alt="ブータン政府LOI調印">
-          </div>
-          <div class="news-card-full__body">
-            <div class="news-card-full__meta">
-              <span class="news-card-full__date" data-jp="2026年1月" data-en="Jan 2026">2026年1月</span>
-              <span class="news-card-full__badge" data-jp="連携" data-en="Partnership">連携</span>
+          <!-- 最新: ブータン政府 -->
+          <a href="news/bhutan.html" class="news-ms-card fade-in">
+            <div class="news-ms-card__img news-ms-card__img--photo">
+              <img src="assets/images/bhutan_LOI.png" alt="ブータン政府LOI調印">
             </div>
-            <p class="news-card-full__title" data-jp="ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。" data-en="LOI signed with the Government of Bhutan. Presented at JETRO Business Seminar during Prime Minister's visit to Japan."ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。</p>
-          </div>
-        </a>
+            <div class="news-ms-card__body">
+              <div class="news-ms-card__meta">
+                <span class="news-ms-card__date"
+                      data-jp="2026年1月" data-en="Jan 2026">2026年1月</span>
+                <span class="news-ms-card__badge"
+                      data-jp="連携" data-en="Partnership">連携</span>
+              </div>
+              <p class="news-ms-card__title"
+                 data-jp="ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。"
+                 data-en="LOI signed with the Government of Bhutan. Presented at JETRO Business Seminar during Prime Minister's visit to Japan.">ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。</p>
+            </div>
+            <span class="news-ms-card__arr" aria-hidden="true">→</span>
+          </a>
 
-        <!-- 2件目: 2025年5月 モザンビーク政府 -->
+          <!-- JAXA認定 -->
+          <a href="news/jaxa.html" class="news-ms-card fade-in">
+            <div class="news-ms-card__img news-ms-card__img--white">
+              <img src="assets/images/js_logo__シグネチャー.png" alt="JAXAスタートアップ">
+            </div>
+            <div class="news-ms-card__body">
+              <div class="news-ms-card__meta">
+                <span class="news-ms-card__date"
+                      data-jp="2024年10月" data-en="Oct 2024">2024年10月</span>
+                <span class="news-ms-card__badge"
+                      data-jp="認定" data-en="Certified">認定</span>
+              </div>
+              <p class="news-ms-card__title"
+                 data-jp="JAXAスタートアップ認定。航空技術部門から2社目。"
+                 data-en="Certified as a JAXA Startup. Second company from the aviation technology division.">JAXAスタートアップ認定。航空技術部門から2社目。</p>
+            </div>
+            <span class="news-ms-card__arr" aria-hidden="true">→</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- ── Updates ── -->
+      <div class="news-updates">
+        <p class="news-updates__label"
+           data-jp="Updates" data-en="Updates">Updates</p>
+
+        <!-- フィルター対象はUpdatesのみ -->
+        <!-- 以下のカードに data-category を付ける -->
+
+        <!-- モザンビーク政府 -->
         <a href="news/mozambique.html" class="news-card-full fade-in" data-category="連携">
           <div class="news-card-full__img news-card-full__img--photo">
             <img src="assets/images/mozambique_LOI.jpg" alt="モザンビーク政府LOI調印">
           </div>
           <div class="news-card-full__body">
             <div class="news-card-full__meta">
-              <span class="news-card-full__date" data-jp="2025年5月" data-en="May 2025">2025年5月</span>
-              <span class="news-card-full__badge" data-jp="連携" data-en="Partnership">連携</span>
+              <span class="news-card-full__date"
+                    data-jp="2025年5月" data-en="May 2025">2025年5月</span>
+              <span class="news-card-full__badge"
+                    data-jp="連携" data-en="Partnership">連携</span>
             </div>
-            <p class="news-card-full__title" data-jp="モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。" data-en="LOI signed with the Government of Mozambique. Flight footage exhibited at Osaka Expo pavilion."モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。</p>
+            <p class="news-card-full__title"
+               data-jp="モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。"
+               data-en="LOI signed with the Government of Mozambique. Flight footage exhibited at Osaka Expo pavilion.">モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。</p>
           </div>
         </a>
 
-        <!-- 3件目: 2025年5月 NEDO採択 -->
+        <!-- NEDO採択 -->
         <a href="news/nedo.html" class="news-card-full fade-in" data-category="採択">
           <div class="news-card-full__img news-card-full__img--white">
             <img src="assets/images/NEDO_logo.svg" alt="NEDO">
           </div>
           <div class="news-card-full__body">
             <div class="news-card-full__meta">
-              <span class="news-card-full__date" data-jp="2025年5月" data-en="May 2025">2025年5月</span>
-              <span class="news-card-full__badge" data-jp="採択" data-en="Award / Certified">採択</span>
+              <span class="news-card-full__date"
+                    data-jp="2025年5月" data-en="May 2025">2025年5月</span>
+              <span class="news-card-full__badge"
+                    data-jp="採択" data-en="Award / Certified">採択</span>
             </div>
-            <p class="news-card-full__title" data-jp="NEDO先導研究プログラム採択（2024–26）。JAXA・ミズノ・SOMと連携。" data-en="Selected for NEDO Leading Research Program (2024–26). Partnering with JAXA, Mizuno, and SOM.">NEDO先導研究プログラム採択（2024–26）。JAXA・ミズノ・SOMと連携。</p>
+            <p class="news-card-full__title"
+               data-jp="NEDO先導研究プログラム採択（2024–26）。JAXA・ミズノ・SOMと連携。"
+               data-en="Selected for NEDO Leading Research Program (2024–26). Partnering with JAXA, Mizuno, and SOM.">NEDO先導研究プログラム採択（2024–26）。JAXA・ミズノ・SOMと連携。</p>
           </div>
         </a>
 
-        <!-- 4件目: 2024年10月 JAXA認定 -->
-        <a href="news/jaxa.html" class="news-card-full fade-in" data-category="認定">
-          <div class="news-card-full__img news-card-full__img--white">
-            <img src="assets/images/js_logo__シグネチャー.png" alt="JAXAスタートアップ">
-          </div>
-          <div class="news-card-full__body">
-            <div class="news-card-full__meta">
-              <span class="news-card-full__date" data-jp="2024年10月" data-en="Oct 2024">2024年10月</span>
-              <span class="news-card-full__badge" data-jp="認定" data-en="Award / Certified">認定</span>
-            </div>
-            <p class="news-card-full__title" data-jp="JAXAスタートアップ認定。航空技術部門から2社目。" data-en="Certified as a JAXA Startup. Second company from the aviation technology division.">JAXAスタートアップ認定。航空技術部門から2社目。</p>
-          </div>
-        </a>
-
-        <!-- 5件目: 2024年2月 加賀市連携協定 -->
+        <!-- 加賀市連携協定 -->
         <a href="news/kaga.html" class="news-card-full fade-in" data-category="連携">
           <div class="news-card-full__img news-card-full__img--white news-card-full__img--fill">
             <img src="assets/images/kagashi_mark_mono.jpg" alt="加賀市">
           </div>
           <div class="news-card-full__body">
             <div class="news-card-full__meta">
-              <span class="news-card-full__date" data-jp="2024年2月" data-en="Feb 2024">2024年2月</span>
-              <span class="news-card-full__badge" data-jp="連携" data-en="Partnership">連携</span>
+              <span class="news-card-full__date"
+                    data-jp="2024年2月" data-en="Feb 2024">2024年2月</span>
+              <span class="news-card-full__badge"
+                    data-jp="連携" data-en="Partnership">連携</span>
             </div>
-            <p class="news-card-full__title" data-jp="石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。" data-en="Comprehensive partnership agreement concluded with Kaga City, Ishikawa. Test facility established in National Strategic Special Zone.">石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。</p>
+            <p class="news-card-full__title"
+               data-jp="石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。"
+               data-en="Comprehensive partnership agreement concluded with Kaga City, Ishikawa. Test facility established in National Strategic Special Zone.">石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。</p>
           </div>
         </a>
+
       </div>
     </div>
   </section>
@@ -219,12 +257,12 @@
 
   <script src="js/main.js?v=17"></script>
   <script>
-    // Filter tabs
     document.querySelectorAll('.filter-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         const filter = tab.dataset.filter;
+        /* Updatesのみフィルタリング対象（Milestonesは常に表示） */
         document.querySelectorAll('.news-card-full').forEach(row => {
           if (filter === 'all' || row.dataset.category === filter) {
             row.style.display = '';
