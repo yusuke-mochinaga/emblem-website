@@ -3698,11 +3698,22 @@ a.news-card-full:hover {
    ============================================================ */
 
 /* ── セクション本体 ── */
+/* ============================================================
+   Home — News セクション（独立カード版）
+   構造:
+   .home-news-section（100svh・flex縦・background:#111）
+   ├── .hnj__header（固定）
+   ├── .hnj__sec-label--dark（Milestonesラベル）
+   ├── .hnj__cards（カード2枚横並び・左右余白56px）
+   ├── .hnj__sec-label--light（Updatesラベル）
+   └── .hnj__updates-list（flex:1・縦スクロール）
+   ============================================================ */
+
 .home-news-section {
   width: 100%;
   height: 100svh;
   min-height: 600px;
-  background: #111;
+  background: #111111;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -3716,203 +3727,174 @@ a.news-card-full:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 48px 14px;
-  border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  padding: 13px 32px 11px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
 }
 
 @media (max-width: 768px) {
-  .hnj__header { padding: 14px 20px 11px; }
+  .hnj__header { padding: 12px 20px 10px; }
 }
 
 .hnj__title {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
   color: #fff;
   letter-spacing: -0.01em;
 }
 
-@media (max-width: 768px) {
-  .hnj__title { font-size: 16px; }
-}
-
 .hnj__link {
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
   text-decoration: none;
+  letter-spacing: 0.02em;
   transition: color 200ms ease;
 }
-.hnj__link:hover { color: #fff; }
+.hnj__link:hover { color: rgba(255, 255, 255, 0.7); }
 
-/* ── Milestones: 写真2分割・テキストオーバーレイ ── */
-.hnj__milestones {
-  flex: 0 0 58%;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(255,255,255,0.08);
-  overflow: hidden;
+/* ── セクションラベル（Milestones / Updates）── */
+.hnj__sec-label {
+  flex: 0 0 auto;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hnj__sec-label::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+}
+
+.hnj__sec-label--dark {
+  color: rgba(255, 255, 255, 0.3);
+  padding: 7px 32px 4px;
+}
+.hnj__sec-label--dark::after { background: rgba(255, 255, 255, 0.1); }
+
+.hnj__sec-label--light {
+  color: #B4B2AA;
+  padding: 6px 32px 4px;
+  background: #F7F6F3;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+}
+.hnj__sec-label--light::after { background: #E5E3DC; }
+
+@media (max-width: 768px) {
+  .hnj__sec-label--dark { padding: 6px 20px 4px; }
+  .hnj__sec-label--light { padding: 5px 20px 4px; }
+}
+
+/* ── Milestone カードエリア ── */
+.hnj__cards {
+  flex: 0 0 auto;
+  padding: 5px 56px 6px;  /* 左右余白56px */
+  display: flex;
+  gap: 14px;
 }
 
 @media (max-width: 768px) {
-  .hnj__milestones { flex: 0 0 52%; }
+  .hnj__cards { padding: 4px 20px 5px; gap: 10px; }
 }
 
-/* Milestoneカード1枚 */
+/* Milestone カード1枚 */
 .hnj__ms-card {
-  position: relative;
-  display: flex;
+  flex: 1;
+  background: #F7F6F3;   /* 両方とも白系で統一 */
+  border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
-  cursor: pointer;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  transition: opacity 150ms ease;
+}
+.hnj__ms-card:hover { opacity: 0.85; }
+
+/* 写真エリア: 3:2 */
+.hnj__ms-img {
+  aspect-ratio: 3 / 2;
+  width: 100%;
+  background: #E8E5DF;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hnj__ms-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* 写真: 全体に広がる */
-.hnj__ms-photo {
-  position: absolute;
-  inset: 0;
+/* ロゴ画像（JAXAなど）: containで中央配置 */
+.hnj__ms-img--contain {
+  background: #fff;
+  border-bottom: 0.5px solid #E5E3DC;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  padding: 10px;
 }
-
-.hnj__ms-photo img {
-  width: 100%;
-  height: auto;
-  display: block;
+.hnj__ms-img--contain img {
+  width: auto;
+  height: 100%;
   object-fit: contain;
-  object-position: center;
-  transition: transform 400ms ease;
 }
 
-.hnj__ms-card:hover .hnj__ms-photo img {
-  transform: scale(1.03);
-}
-
-/* 暗いグラデーションオーバーレイ */
-.hnj__ms-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.82) 0%,
-    rgba(0,0,0,0.35) 50%,
-    rgba(0,0,0,0.08) 100%
-  );
-}
-
-/* テキスト: 左下に配置 */
-.hnj__ms-content {
-  position: relative;
-  z-index: 1;
-  margin-top: auto;
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-@media (max-width: 768px) {
-  .hnj__ms-content { padding: 10px 12px; gap: 4px; }
-}
-
-.hnj__ms-eyebrow {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-}
-
-@media (max-width: 768px) {
-  .hnj__ms-eyebrow { font-size: 8px; }
+/* カードテキスト */
+.hnj__ms-body {
+  padding: 7px 10px 9px;
 }
 
 .hnj__ms-meta {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  margin-bottom: 4px;
 }
 
 .hnj__ms-date {
-  font-size: 11px;
-  color: rgba(255,255,255,0.6);
-}
-
-@media (max-width: 768px) {
-  .hnj__ms-date { font-size: 9px; }
+  font-size: 9px;
+  color: #B4B2AA;
+  letter-spacing: 0.02em;
 }
 
 .hnj__ms-badge {
-  font-size: 9px;
+  font-size: 7px;
   font-weight: 500;
-  padding: 2px 6px;
-  border-radius: 3px;
-  background: rgba(255,255,255,0.18);
+  padding: 1px 5px;
+  border-radius: 2px;
+  background: #1A1A1A;
   color: #fff;
+  letter-spacing: 0.03em;
 }
 
 .hnj__ms-title {
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 500;
-  color: #fff;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: #1A1A1A;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
 }
 
 @media (max-width: 768px) {
-  .hnj__ms-title { font-size: 11px; }
+  .hnj__ms-date { font-size: 8px; }
+  .hnj__ms-title { font-size: 9px; }
+  .hnj__ms-body { padding: 6px 9px 8px; }
 }
 
-/* ── Updates: 縦スクロールリスト ── */
-.hnj__updates {
-  flex: 1;
-  min-height: 0;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-top: 0.5px solid #E5E3DC;
-}
-
-.hnj__updates-label {
-  flex: 0 0 auto;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  padding: 8px 48px 6px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 0.5px solid #E5E3DC;
-}
-.hnj__updates-label::after {
-  content: '';
-  flex: 1;
-  height: 0.5px;
-  background: #D3D1C7;
-}
-
-@media (max-width: 768px) {
-  .hnj__updates-label { padding: 7px 20px 5px; font-size: 8px; }
-}
-
-/* スクロールリスト本体 */
+/* ── Updates 縦スクロールリスト ── */
 .hnj__updates-list {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  background: #F7F6F3;
   scrollbar-width: thin;
   scrollbar-color: #D3D1C7 transparent;
 }
-.hnj__updates-list::-webkit-scrollbar { width: 4px; }
+.hnj__updates-list::-webkit-scrollbar { width: 3px; }
 .hnj__updates-list::-webkit-scrollbar-track { background: transparent; }
 .hnj__updates-list::-webkit-scrollbar-thumb {
   background: #D3D1C7;
@@ -3923,42 +3905,51 @@ a.news-card-full:hover {
 .hnj__update-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 10px 48px;
+  gap: 12px;
+  padding: 9px 32px;
   border-bottom: 0.5px solid #E5E3DC;
   text-decoration: none;
+  background: #fff;
   cursor: pointer;
-  transition: background 150ms ease;
+  transition: background 120ms ease;
 }
 .hnj__update-item:last-child { border-bottom: none; }
 .hnj__update-item:hover { background: #F7F6F3; }
 
 @media (max-width: 768px) {
-  .hnj__update-item { gap: 10px; padding: 9px 20px; }
+  .hnj__update-item { gap: 10px; padding: 8px 20px; }
 }
 
 /* サムネイル: 正方形 */
 .hnj__update-thumb {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border-radius: 4px;
   background: #F0EFEB;
   flex-shrink: 0;
   overflow: hidden;
+}
+.hnj__update-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hnj__update-thumb--contain {
+  background: #fff;
+  border: 0.5px solid #E5E3DC;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 4px;
 }
-.hnj__update-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.hnj__update-thumb--white {
-  background: #fff;
-  border: 0.5px solid #E5E3DC;
-  padding: 6px;
+.hnj__update-thumb--contain img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
 }
-.hnj__update-thumb--white img { width: auto; height: 100%; object-fit: contain; }
 
 @media (max-width: 768px) {
-  .hnj__update-thumb { width: 40px; height: 40px; }
+  .hnj__update-thumb { width: 32px; height: 32px; }
 }
 
 .hnj__update-body { flex: 1; min-width: 0; }
@@ -3966,42 +3957,45 @@ a.news-card-full:hover {
 .hnj__update-meta {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   margin-bottom: 3px;
 }
 
 .hnj__update-date {
-  font-size: 11px;
-  color: var(--stone-400);
+  font-size: 9px;
+  color: #B4B2AA;
+  letter-spacing: 0.02em;
 }
 
 .hnj__update-badge {
-  font-size: 9px;
+  font-size: 7px;
   font-weight: 500;
-  padding: 1px 6px;
-  border-radius: 3px;
-  background: var(--stone-100);
-  color: var(--stone-600);
+  padding: 1px 5px;
+  border-radius: 2px;
+  background: #F0EFEB;
+  color: #6B6A63;
+  letter-spacing: 0.03em;
 }
 
 .hnj__update-title {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
-  color: var(--ink);
-  line-height: 1.4;
+  color: #1A1A1A;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 @media (max-width: 768px) {
-  .hnj__update-date { font-size: 9px; }
-  .hnj__update-title { font-size: 11px; }
+  .hnj__update-date { font-size: 8px; }
+  .hnj__update-title { font-size: 10px; }
 }
 
 .hnj__update-arr {
-  font-size: 12px;
-  color: var(--stone-300);
+  font-size: 11px;
+  color: #D3D1C7;
   flex-shrink: 0;
 }
 
