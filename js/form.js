@@ -1,5 +1,5 @@
 /* ============================================================
-   Emblem — form.js
+   emblem — form.js
 
    recruit.html の Contact Form を管理：
    • 職種チップ（.chip）の選択/非選択トグル
