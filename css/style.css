@@ -4077,7 +4077,7 @@ a.news-card-full:hover {
 }
 
 .news-ms-card__title {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--ink);
   line-height: 1.4;
@@ -4085,9 +4085,9 @@ a.news-card-full:hover {
 }
 
 .news-ms-card__desc {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--stone-600);
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--stone-400);
   line-height: 1.6;
   display: -webkit-box;
   -webkit-line-clamp: 3;
