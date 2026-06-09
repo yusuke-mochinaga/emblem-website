@@ -4081,6 +4081,18 @@ a.news-card-full:hover {
   font-weight: 500;
   color: var(--ink);
   line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.news-ms-card__desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--stone-600);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .news-ms-card__arr {
