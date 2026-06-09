@@ -265,76 +265,120 @@
   </section>
 
   <!-- ========== NEWS CAROUSEL ========== -->
-  <section class="section section--stone">
-    <div class="news-carousel-wrap">
-      <div class="news-carousel-header fade-in">
-        <h2 class="h2" data-jp="実績・ニュース" data-en="News & Achievements">実績・ニュース</h2>
-        <a href="news.html" class="link-arrow" data-jp="すべて見る →" data-en="View all →">すべて見る →</a>
-      </div>
-      <div class="news-carousel fade-in">
+  <section class="home-news-section">
 
-        <!-- ブータン 2026/1/21 -->
-        <div class="news-card">
-          <div class="news-card__img news-card__img--photo">
+    <!-- セクションヘッダー -->
+    <div class="home-news__header">
+      <h2 class="home-news__title"
+          data-jp="News" data-en="News">News</h2>
+      <a href="news.html" class="home-news__link"
+         data-jp="View all →" data-en="View all →">View all →</a>
+    </div>
+
+    <!-- Milestones（固定・最新順） -->
+    <div class="home-news__milestones">
+      <p class="home-news__section-label"
+         data-jp="Milestones" data-en="Milestones">Milestones</p>
+      <div class="home-news__ms-list">
+
+        <!-- 最新: ブータン政府 2026年1月 -->
+        <a href="news/bhutan.html" class="home-news__ms-item">
+          <div class="home-news__ms-thumb">
             <img src="assets/images/bhutan_LOI.png" alt="ブータン政府LOI調印">
           </div>
-          <div class="news-card__body">
-            <p class="caption news-card__date">Jan 21, 2026</p>
-            <span class="news-card__badge" data-jp="連携" data-en="Partnership">連携</span>
-            <p class="news-card__title" data-jp="ブータン政府とのLOI調印。" data-en="LOI signed with Bhutan government.">ブータン政府とのLOI調印。</p>
+          <div class="home-news__ms-body">
+            <div class="home-news__ms-meta">
+              <span class="home-news__ms-date"
+                    data-jp="2026年1月" data-en="Jan 2026">2026年1月</span>
+              <span class="home-news__ms-badge"
+                    data-jp="連携" data-en="Partnership">連携</span>
+            </div>
+            <p class="home-news__ms-title"
+               data-jp="ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。"
+               data-en="LOI signed with the Government of Bhutan. Presented at JETRO Business Seminar.">ブータン政府とのLOI調印。首相来日時にJETROビジネスセミナーで登壇。</p>
           </div>
-        </div>
+          <span class="home-news__ms-arr" aria-hidden="true">→</span>
+        </a>
 
-        <!-- モザンビーク 2025/3/16 -->
-        <div class="news-card">
-          <div class="news-card__img news-card__img--photo">
-            <img src="assets/images/mozambique_LOI.jpg" alt="モザンビーク政府LOI調印">
+        <!-- JAXA認定 2024年10月 -->
+        <a href="news/jaxa.html" class="home-news__ms-item">
+          <div class="home-news__ms-thumb home-news__ms-thumb--white">
+            <img src="assets/images/js_logo__シグネチャー.png" alt="JAXAスタートアップ">
           </div>
-          <div class="news-card__body">
-            <p class="caption news-card__date">Mar 16, 2025</p>
-            <span class="news-card__badge" data-jp="連携" data-en="Partnership">連携</span>
-            <p class="news-card__title" data-jp="モザンビーク政府とのLOI調印。" data-en="LOI signed with Mozambique government.">モザンビーク政府とのLOI調印。</p>
+          <div class="home-news__ms-body">
+            <div class="home-news__ms-meta">
+              <span class="home-news__ms-date"
+                    data-jp="2024年10月" data-en="Oct 2024">2024年10月</span>
+              <span class="home-news__ms-badge"
+                    data-jp="認定" data-en="Certified">認定</span>
+            </div>
+            <p class="home-news__ms-title"
+               data-jp="JAXAスタートアップ認定。航空技術部門から2社目。"
+               data-en="Certified as a JAXA Startup. Second company from the aviation technology division.">JAXAスタートアップ認定。航空技術部門から2社目。</p>
           </div>
-        </div>
-
-        <!-- JAXA 2024/10/23 -->
-        <div class="news-card">
-          <div class="news-card__img news-card__img--white">
-            <img src="assets/images/js_logo__シグネチャー.png" alt="JAXA Startup">
-          </div>
-          <div class="news-card__body">
-            <p class="caption news-card__date">Oct 23, 2024</p>
-            <span class="news-card__badge" data-jp="認定" data-en="Certified">認定</span>
-            <p class="news-card__title" data-jp="JAXAスタートアップ認定。航空技術部門から2社目。" data-en="Certified as a JAXA startup. 2nd from aviation division.">JAXAスタートアップ認定。航空技術部門から2社目。</p>
-          </div>
-        </div>
-
-        <!-- NEDO 2024/5/24 -->
-        <div class="news-card">
-          <div class="news-card__img news-card__img--white">
-            <img src="assets/images/NEDO_logo.svg" alt="NEDO">
-          </div>
-          <div class="news-card__body">
-            <p class="caption news-card__date">May 24, 2024</p>
-            <span class="news-card__badge" data-jp="採択" data-en="Selected">採択</span>
-            <p class="news-card__title" data-jp="NEDO先導研究プログラム採択（2024–26）。" data-en="Selected for NEDO Leading Research Program (2024–26).">NEDO先導研究プログラム採択（2024–26）。</p>
-          </div>
-        </div>
-
-        <!-- 加賀市 2024/2/15 -->
-        <div class="news-card">
-          <div class="news-card__img news-card__img--white">
-            <img src="assets/images/kagashi_mark_mono.jpg" alt="加賀市" class="news-card__img--kaga">
-          </div>
-          <div class="news-card__body">
-            <p class="caption news-card__date">Feb 15, 2024</p>
-            <span class="news-card__badge" data-jp="連携" data-en="Partnership">連携</span>
-            <p class="news-card__title" data-jp="石川県加賀市と包括連携協定締結。" data-en="Partnership agreement with Kaga City, Ishikawa.">石川県加賀市と包括連携協定締結。</p>
-          </div>
-        </div>
+          <span class="home-news__ms-arr" aria-hidden="true">→</span>
+        </a>
 
       </div>
     </div>
+
+    <!-- Updates（横スクロールカルーセル） -->
+    <div class="home-news__updates">
+      <p class="home-news__section-label"
+         data-jp="Updates" data-en="Updates">Updates</p>
+      <div class="home-news__carousel">
+
+        <a href="news/mozambique.html" class="home-news__card">
+          <div class="home-news__card-img">
+            <img src="assets/images/mozambique_LOI.jpg" alt="モザンビーク政府LOI調印">
+          </div>
+          <div class="home-news__card-body">
+            <div class="home-news__card-meta">
+              <span data-jp="2025年5月" data-en="May 2025">2025年5月</span>
+              <span class="home-news__card-badge"
+                    data-jp="連携" data-en="Partnership">連携</span>
+            </div>
+            <p class="home-news__card-title"
+               data-jp="モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。"
+               data-en="LOI signed with the Government of Mozambique. Flight footage exhibited at Osaka Expo.">モザンビーク政府とのLOI調印。大阪万博パビリオン内で飛行映像を展示。</p>
+          </div>
+        </a>
+
+        <a href="news/nedo.html" class="home-news__card">
+          <div class="home-news__card-img home-news__card-img--white">
+            <img src="assets/images/NEDO_logo.svg" alt="NEDO">
+          </div>
+          <div class="home-news__card-body">
+            <div class="home-news__card-meta">
+              <span data-jp="2025年5月" data-en="May 2025">2025年5月</span>
+              <span class="home-news__card-badge"
+                    data-jp="採択" data-en="Award">採択</span>
+            </div>
+            <p class="home-news__card-title"
+               data-jp="NEDO先導研究プログラム採択（2024–26）。"
+               data-en="Selected for NEDO Leading Research Program (2024–26).">NEDO先導研究プログラム採択（2024–26）。</p>
+          </div>
+        </a>
+
+        <a href="news/kaga.html" class="home-news__card">
+          <div class="home-news__card-img home-news__card-img--white">
+            <img src="assets/images/kagashi_mark_mono.jpg" alt="加賀市">
+          </div>
+          <div class="home-news__card-body">
+            <div class="home-news__card-meta">
+              <span data-jp="2024年2月" data-en="Feb 2024">2024年2月</span>
+              <span class="home-news__card-badge"
+                    data-jp="連携" data-en="Partnership">連携</span>
+            </div>
+            <p class="home-news__card-title"
+               data-jp="石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。"
+               data-en="Partnership agreement concluded with Kaga City, Ishikawa.">石川県加賀市と包括連携協定締結。国家戦略特区内に試験拠点整備。</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
   </section>
 
   <!-- ========== RECRUIT — フル幅動画背景 ========== -->
