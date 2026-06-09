@@ -3789,14 +3789,14 @@ a.news-card-full:hover {
 
 /* ── Milestone カードエリア ── */
 .hnj__cards {
-  flex: 0 0 auto;
-  padding: 5px 96px 6px;
+  flex: 0 0 240px;
+  padding: 8px 96px 10px;
   display: flex;
   gap: 14px;
 }
 
 @media (max-width: 768px) {
-  .hnj__cards { padding: 4px 24px 5px; gap: 10px; }
+  .hnj__cards { flex: 0 0 200px; padding: 6px 24px 7px; gap: 10px; }
 }
 
 /* Milestone カード1枚 */
