@@ -3663,6 +3663,7 @@ a.news-card-full:hover {
    ============================================================ */
 
 .home-news-section {
+  width: 100%;
   background: #F7F6F3;
   height: 100svh;
   min-height: 600px;
