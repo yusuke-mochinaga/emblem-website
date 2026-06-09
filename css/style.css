@@ -4085,7 +4085,7 @@ a.news-card-full:hover {
 }
 
 .news-ms-card__desc {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 300;
   color: var(--stone-400);
   line-height: 1.6;
