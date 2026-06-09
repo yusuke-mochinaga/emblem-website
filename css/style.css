@@ -3736,7 +3736,7 @@ a.news-card-full:hover {
 }
 
 .hnj__title {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   color: #fff;
   letter-spacing: -0.01em;
@@ -3754,7 +3754,7 @@ a.news-card-full:hover {
 /* ── セクションラベル（Milestones / Updates）── */
 .hnj__sec-label {
   flex: 0 0 auto;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3790,7 +3790,7 @@ a.news-card-full:hover {
 /* ── Milestone カードエリア ── */
 .hnj__cards {
   flex: 0 0 auto;
-  padding: 8px 180px 10px;
+  padding: 8px 220px 10px;
   display: flex;
   gap: 16px;
 }
@@ -3891,7 +3891,7 @@ a.news-card-full:hover {
   background: #F7F6F3;
   display: flex;
   flex-direction: column;
-  padding: 8px 180px 10px;
+  padding: 8px 220px 10px;
 }
 
 @media (max-width: 768px) {
