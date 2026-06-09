@@ -3837,68 +3837,78 @@ a.news-card-full:hover {
   .home-news__updates { padding: 10px 24px 0; }
 }
 
+/* カルーセル: 横スクロール */
 .home-news__carousel {
   display: flex;
-  flex-direction: column;
-  gap: 1px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
+  flex-direction: row;          /* ← 縦→横に変更 */
+  gap: 10px;
+  overflow-x: scroll;           /* ← 横スクロール */
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 16px;
   flex: 1;
-  background: #E5E3DC;
-  border-radius: 4px;
-  overflow: hidden;
+  align-items: flex-start;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  background: transparent;      /* ← 背景色削除 */
+  border-radius: 0;
 }
-.home-news__carousel::-webkit-scrollbar { width: 6px; }
-.home-news__carousel::-webkit-scrollbar-track { background: transparent; }
-.home-news__carousel::-webkit-scrollbar-thumb { background: #D3D1C7; border-radius: 3px; }
+.home-news__carousel::-webkit-scrollbar { display: none; }
 
+/* カード: 縦レイアウト（画像上・テキスト下） */
 .home-news__card {
+  flex: 0 0 160px;              /* ← 固定幅の縦カード */
   background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  flex-direction: column;       /* ← 縦方向 */
   text-decoration: none;
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: opacity 150ms ease;
   flex-shrink: 0;
+  gap: 0;
+  padding: 0;                   /* ← paddingを削除（card-bodyに移動） */
+  align-items: stretch;
 }
-.home-news__card:hover { background: #F7F6F3; }
+.home-news__card:hover { opacity: 0.85; background: #fff; }
 
+/* カード画像: 上部 */
 .home-news__card-img {
-  width: 80px;
-  height: 60px;
+  width: 100%;                  /* ← 全幅 */
+  height: 90px;
   background: #F0EFEB;
   flex-shrink: 0;
   overflow: hidden;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 0;
+  display: block;
 }
 .home-news__card-img--white {
   background: #fff;
-  border: 0.5px solid #E5E3DC;
+  border-bottom: 0.5px solid #E5E3DC;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 8px;
 }
 .home-news__card-img img { width: 100%; height: 100%; object-fit: cover; }
 .home-news__card-img--white img { width: auto; height: 100%; object-fit: contain; }
 
-@media (max-width: 768px) {
-  .home-news__card-img { width: 64px; height: 48px; }
+/* カード本文: 下部 */
+.home-news__card-body {
+  flex: 1;
+  padding: 8px 10px 10px;       /* ← paddingをbodyに設定 */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-
-.home-news__card-body { flex: 1; min-width: 0; }
 
 .home-news__card-meta {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 2px;
+  gap: 4px;
   font-size: 8px;
   color: var(--stone-400);
 }
@@ -3913,16 +3923,15 @@ a.news-card-full:hover {
 }
 
 .home-news__card-title {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
   color: var(--ink);
-  line-height: 1.4;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
+  line-height: 1.3;
 }
 
 @media (max-width: 768px) {
+  .home-news__card { flex: 0 0 130px; }
+  .home-news__card-img { height: 74px; }
   .home-news__card-title { font-size: 9px; }
 }
 
