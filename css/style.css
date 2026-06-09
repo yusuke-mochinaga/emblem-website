@@ -3728,7 +3728,8 @@ a.news-card-full:hover {
   align-items: center;
   justify-content: space-between;
   padding: 13px 32px 11px;
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 0.5px solid #E5E3DC;
+  background: #F7F6F3;
 }
 
 @media (max-width: 768px) {
@@ -3738,7 +3739,7 @@ a.news-card-full:hover {
 .hnj__title {
   font-size: 40px;
   font-weight: 500;
-  color: #fff;
+  color: #1A1A1A;
   letter-spacing: -0.01em;
 }
 
@@ -3778,10 +3779,11 @@ a.news-card-full:hover {
 }
 
 .hnj__sec-label--dark {
-  color: rgba(255, 255, 255, 0.3);
+  color: #B4B2AA;
   padding: 7px 32px 4px;
+  background: #F7F6F3;
 }
-.hnj__sec-label--dark::after { background: rgba(255, 255, 255, 0.1); }
+.hnj__sec-label--dark::after { background: #E5E3DC; }
 
 .hnj__sec-label--light {
   color: #B4B2AA;
@@ -3796,7 +3798,7 @@ a.news-card-full:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
+  padding: 6px 32px 0;
   background: #F7F6F3;
   border-top: 0.5px solid rgba(255, 255, 255, 0.06);
 }
@@ -3813,6 +3815,7 @@ a.news-card-full:hover {
   padding: 8px 220px 10px;
   display: flex;
   gap: 16px;
+  background: #F7F6F3;
 }
 
 @media (max-width: 768px) {
@@ -3828,7 +3831,7 @@ a.news-card-full:hover {
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border: 0.5px solid #000000;
   transition: opacity 150ms ease;
 }
 .hnj__ms-card:hover { opacity: 0.85; }
@@ -3865,6 +3868,7 @@ a.news-card-full:hover {
 /* カードテキスト */
 .hnj__ms-body {
   padding: 10px 14px 13px 14px;
+  background: #fff;
 }
 
 .hnj__ms-meta {
