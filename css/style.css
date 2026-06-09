@@ -3790,9 +3790,9 @@ a.news-card-full:hover {
 /* ── Milestone カードエリア ── */
 .hnj__cards {
   flex: 0 0 auto;
-  padding: 5px 56px 6px;  /* 左右余白56px */
+  padding: 8px 80px 10px;
   display: flex;
-  gap: 14px;
+  gap: 16px;
 }
 
 @media (max-width: 768px) {
@@ -3813,9 +3813,9 @@ a.news-card-full:hover {
 }
 .hnj__ms-card:hover { opacity: 0.85; }
 
-/* 写真エリア: 3:2 */
+/* 写真エリア: 4:3 */
 .hnj__ms-img {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 4 / 3;
   width: 100%;
   background: #E8E5DF;
   overflow: hidden;
@@ -3844,7 +3844,7 @@ a.news-card-full:hover {
 
 /* カードテキスト */
 .hnj__ms-body {
-  padding: 7px 10px 9px;
+  padding: 10px 14px 13px;
 }
 
 .hnj__ms-meta {
@@ -3855,15 +3855,15 @@ a.news-card-full:hover {
 }
 
 .hnj__ms-date {
-  font-size: 9px;
+  font-size: 11px;
   color: #B4B2AA;
   letter-spacing: 0.02em;
 }
 
 .hnj__ms-badge {
-  font-size: 7px;
+  font-size: 9px;
   font-weight: 500;
-  padding: 1px 5px;
+  padding: 2px 7px;
   border-radius: 2px;
   background: #1A1A1A;
   color: #fff;
@@ -3871,7 +3871,7 @@ a.news-card-full:hover {
 }
 
 .hnj__ms-title {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
   color: #1A1A1A;
   line-height: 1.45;
@@ -3905,8 +3905,8 @@ a.news-card-full:hover {
 .hnj__update-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 32px;
+  gap: 18px;
+  padding: 22px 32px;
   border-bottom: 0.5px solid #E5E3DC;
   text-decoration: none;
   background: #fff;
@@ -3922,9 +3922,9 @@ a.news-card-full:hover {
 
 /* サムネイル: 正方形 */
 .hnj__update-thumb {
-  width: 52px;
-  height: 52px;
-  border-radius: 4px;
+  width: 64px;
+  height: 64px;
+  border-radius: 5px;
   background: #F0EFEB;
   flex-shrink: 0;
   overflow: hidden;
@@ -3962,15 +3962,15 @@ a.news-card-full:hover {
 }
 
 .hnj__update-date {
-  font-size: 9px;
+  font-size: 11px;
   color: #B4B2AA;
   letter-spacing: 0.02em;
 }
 
 .hnj__update-badge {
-  font-size: 7px;
+  font-size: 9px;
   font-weight: 500;
-  padding: 1px 5px;
+  padding: 2px 6px;
   border-radius: 2px;
   background: #F0EFEB;
   color: #6B6A63;
@@ -3978,7 +3978,7 @@ a.news-card-full:hover {
 }
 
 .hnj__update-title {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   color: #1A1A1A;
   line-height: 1.4;
