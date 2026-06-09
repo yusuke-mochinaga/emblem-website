@@ -3662,11 +3662,28 @@ a.news-card-full:hover {
    Home — News セクション（Milestones + Updates）
    ============================================================ */
 
+/* ============================================================
+   Home — News セクション（Milestones + Updates フルスクリーン）
+
+   構造:
+   .home-news-section（100svh・flex縦）
+   ├── .home-news__header（固定高さ）
+   ├── .home-news__milestones（固定高さ: 約30%）
+   └── .home-news__updates（残り全部: 約70%）
+       ├── section-label
+       └── .home-news__carousel（横スクロール・高さいっぱい）
+           └── .home-news__card × N（縦カード・高さいっぱい）
+
+   ★ 調整したい場合は以下の1箇所だけ変える:
+     .home-news__milestones { flex: 0 0 30% } の数値
+   ============================================================ */
+
+/* ── セクション本体 ── */
 .home-news-section {
   width: 100%;
-  background: #F7F6F3;
   height: 100svh;
   min-height: 600px;
+  background: #F7F6F3;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -3674,13 +3691,14 @@ a.news-card-full:hover {
   scroll-snap-stop: always;
 }
 
+/* ── ヘッダー（News + View all） ── */
 .home-news__header {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 56px 14px;
+  padding: 20px 56px 16px;
   border-bottom: 0.5px solid #E5E3DC;
-  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
@@ -3688,34 +3706,36 @@ a.news-card-full:hover {
 }
 
 .home-news__title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--ink);
   letter-spacing: -0.01em;
 }
 
 @media (max-width: 768px) {
-  .home-news__title { font-size: 16px; }
+  .home-news__title { font-size: 17px; }
 }
 
 .home-news__link {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--stone-600);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 .home-news__link:hover { color: var(--ink); }
 
+/* ── セクションラベル（MILESTONES / UPDATES） ── */
 .home-news__section-label {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 .home-news__section-label::after {
   content: '';
@@ -3725,17 +3745,26 @@ a.news-card-full:hover {
 }
 
 @media (max-width: 768px) {
-  .home-news__section-label { font-size: 8px; margin-bottom: 7px; }
+  .home-news__section-label { font-size: 8px; margin-bottom: 8px; }
 }
 
+/* ── Milestones エリア（高さ: 画面の約30%） ── */
 .home-news__milestones {
-  padding: 14px 56px 12px;
+  /* ★ この数値だけ変えれば比率が変わる */
+  flex: 0 0 30%;
+  min-height: 0;
+  padding: 16px 56px 12px;
   border-bottom: 0.5px solid #E5E3DC;
-  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
-  .home-news__milestones { padding: 12px 24px 10px; }
+  .home-news__milestones {
+    flex: 0 0 32%;
+    padding: 12px 24px 10px;
+  }
 }
 
 .home-news__ms-list {
@@ -3743,30 +3772,35 @@ a.news-card-full:hover {
   flex-direction: column;
   gap: 1px;
   background: #E5E3DC;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
+  flex: 1;
+  min-height: 0;
 }
 
+/* Milestones カード */
 .home-news__ms-item {
   background: #fff;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 9px 14px;
+  gap: 14px;
+  padding: 0 16px;
   text-decoration: none;
   cursor: pointer;
+  flex: 1;              /* 2枚で均等に高さを分割 */
+  min-height: 0;
   transition: background var(--transition-fast);
 }
 .home-news__ms-item:hover { background: #F7F6F3; }
 
 @media (max-width: 768px) {
-  .home-news__ms-item { gap: 10px; padding: 8px 12px; }
+  .home-news__ms-item { gap: 10px; padding: 0 12px; }
 }
 
 .home-news__ms-thumb {
-  width: 60px;
-  height: 45px;
-  border-radius: 3px;
+  width: 64px;
+  height: 48px;
+  border-radius: 4px;
   background: #F0EFEB;
   flex-shrink: 0;
   overflow: hidden;
@@ -3774,8 +3808,12 @@ a.news-card-full:hover {
   align-items: center;
   justify-content: center;
 }
-.home-news__ms-thumb--white { background: #fff; border: 0.5px solid #E5E3DC; }
+.home-news__ms-thumb--white {
+  background: #fff;
+  border: 0.5px solid #E5E3DC;
+}
 .home-news__ms-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.home-news__ms-thumb--white img { width: auto; height: 70%; object-fit: contain; }
 
 @media (max-width: 768px) {
   .home-news__ms-thumb { width: 48px; height: 36px; }
@@ -3786,102 +3824,114 @@ a.news-card-full:hover {
 .home-news__ms-meta {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 2px;
+  gap: 6px;
+  margin-bottom: 4px;
 }
 
 .home-news__ms-date {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--stone-400);
 }
 
+@media (max-width: 768px) {
+  .home-news__ms-date { font-size: 8px; }
+}
+
 .home-news__ms-badge {
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 500;
-  padding: 1px 5px;
+  padding: 2px 6px;
   border-radius: 2px;
-  background: var(--ink);
+  background: var(--ink);  /* 黒バッジ */
   color: #fff;
 }
 
 .home-news__ms-title {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--ink);
-  white-space: nowrap;
+  line-height: 1.4;
+  /* 長いタイトルは2行で切る */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.3;
 }
 
 @media (max-width: 768px) {
-  .home-news__ms-title { font-size: 10px; }
+  .home-news__ms-title { font-size: 11px; }
 }
 
 .home-news__ms-arr {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--stone-400);
   flex-shrink: 0;
 }
 
+/* ── Updates エリア（残り全部） ── */
 .home-news__updates {
-  padding: 12px 56px 0;
-  flex: 1;
+  flex: 1;              /* Milestonesの残りをすべて使う */
+  min-height: 0;
+  padding: 14px 56px 20px;
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
-  .home-news__updates { padding: 10px 24px 0; }
+  .home-news__updates { padding: 12px 24px 16px; }
 }
 
-/* カルーセル: 横スクロール */
+/* 横スクロールカルーセル */
 .home-news__carousel {
+  flex: 1;              /* Updates内の残り全部 */
+  min-height: 0;
   display: flex;
-  flex-direction: row;          /* ← 縦→横に変更 */
-  gap: 10px;
-  overflow-x: scroll;           /* ← 横スクロール */
+  flex-direction: row;  /* 横並び */
+  gap: 12px;
+  overflow-x: scroll;   /* 横スクロール */
   overflow-y: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-bottom: 16px;
-  flex: 1;
-  align-items: flex-start;
+  align-items: stretch; /* カードを高さいっぱいに引き伸ばす */
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
-  background: transparent;      /* ← 背景色削除 */
-  border-radius: 0;
+  padding-bottom: 4px;
 }
 .home-news__carousel::-webkit-scrollbar { display: none; }
 
-/* カード: 縦レイアウト（画像上・テキスト下） */
+@media (max-width: 768px) {
+  .home-news__carousel { gap: 10px; }
+}
+
+/* Updatesカード（縦レイアウト・固定幅・高さは親に合わせる） */
 .home-news__card {
-  flex: 0 0 160px;              /* ← 固定幅の縦カード */
-  background: #fff;
-  border-radius: 6px;
-  overflow: hidden;
+  flex: 0 0 200px;      /* 固定幅 */
   display: flex;
-  flex-direction: column;       /* ← 縦方向 */
+  flex-direction: column; /* 画像上・テキスト下 */
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
   text-decoration: none;
   cursor: pointer;
   transition: opacity 150ms ease;
-  flex-shrink: 0;
-  gap: 0;
-  padding: 0;                   /* ← paddingを削除（card-bodyに移動） */
-  align-items: stretch;
 }
-.home-news__card:hover { opacity: 0.85; background: #fff; }
+.home-news__card:hover { opacity: 0.82; }
 
-/* カード画像: 上部 */
+@media (max-width: 768px) {
+  .home-news__card { flex: 0 0 150px; border-radius: 6px; }
+}
+
+/* カード画像（上部・固定比率） */
 .home-news__card-img {
-  width: 100%;                  /* ← 全幅 */
-  height: 90px;
+  flex: 0 0 55%;        /* カード高さの55% */
   background: #F0EFEB;
-  flex-shrink: 0;
   overflow: hidden;
-  border-radius: 0;
-  display: block;
+}
+.home-news__card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .home-news__card-img--white {
   background: #fff;
@@ -3889,49 +3939,56 @@ a.news-card-full:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 16px;
 }
-.home-news__card-img img { width: 100%; height: 100%; object-fit: cover; }
-.home-news__card-img--white img { width: auto; height: 100%; object-fit: contain; }
+.home-news__card-img--white img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
 
-/* カード本文: 下部 */
+/* カード本文（下部・残り全部） */
 .home-news__card-body {
   flex: 1;
-  padding: 8px 10px 10px;       /* ← paddingをbodyに設定 */
-  min-width: 0;
+  padding: 10px 12px 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  min-height: 0;
 }
 
 .home-news__card-meta {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 8px;
+  gap: 5px;
+  margin-bottom: 6px;
+  font-size: 9px;
   color: var(--stone-400);
 }
 
 .home-news__card-badge {
-  font-size: 7px;
+  font-size: 8px;
   font-weight: 500;
-  padding: 1px 4px;
+  padding: 1px 5px;
   border-radius: 2px;
   background: var(--stone-100);
   color: var(--stone-600);
 }
 
 .home-news__card-title {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--ink);
-  line-height: 1.3;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
-  .home-news__card { flex: 0 0 130px; }
-  .home-news__card-img { height: 74px; }
-  .home-news__card-title { font-size: 9px; }
+  .home-news__card-meta { font-size: 8px; }
+  .home-news__card-title { font-size: 10px; }
+  .home-news__card-body { padding: 8px 10px 10px; }
 }
 
 /* ============================================================
