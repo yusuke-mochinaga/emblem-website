@@ -3777,15 +3777,26 @@ a.news-card-full:hover {
 
 .hnj__sec-label--light {
   color: #B4B2AA;
-  padding: 6px 32px 4px;
+  padding: 6px 0 4px;
+  background: transparent;
+}
+.hnj__sec-label--light::after { background: #E5E3DC; }
+
+/* Updates ラベル行（ラベル + View all ボタン）*/
+.hnj__sec-label-row {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
   background: #F7F6F3;
   border-top: 0.5px solid rgba(255, 255, 255, 0.06);
 }
-.hnj__sec-label--light::after { background: #E5E3DC; }
 
 @media (max-width: 768px) {
   .hnj__sec-label--dark { padding: 6px 20px 4px; }
   .hnj__sec-label--light { padding: 5px 20px 4px; }
+  .hnj__sec-label-row { padding: 0 20px; }
 }
 
 /* ── Milestone カードエリア ── */

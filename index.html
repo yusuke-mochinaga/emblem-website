@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=66">
+  <link rel="stylesheet" href="css/style.css?v=67">
 
   <!-- 構造化データ: Googleの検索結果リッチ表示用 -->
   <script type="application/ld+json">
@@ -271,8 +271,6 @@
     <div class="hnj__header">
       <h2 class="hnj__title"
           data-jp="News" data-en="News">News</h2>
-      <a href="news.html" class="hnj__link"
-         data-jp="View all →" data-en="View all →">View all →</a>
     </div>
 
     <!-- Milestones セクションラベル -->
@@ -320,9 +318,13 @@
 
     </div>
 
-    <!-- Updates セクションラベル -->
-    <p class="hnj__sec-label hnj__sec-label--light"
-       data-jp="Updates" data-en="Updates">Updates</p>
+    <!-- Updates セクションラベル + View all ボタン -->
+    <div class="hnj__sec-label-row">
+      <p class="hnj__sec-label hnj__sec-label--light"
+         data-jp="Updates" data-en="Updates">Updates</p>
+      <a href="news.html" class="hnj__link"
+         data-jp="View all →" data-en="View all →">View all →</a>
+    </div>
 
     <!-- Updates: 外側コンテナ（余白・背景）-->
     <div class="hnj__updates-outer">
