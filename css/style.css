@@ -1842,6 +1842,11 @@ h2, .h2 {
     min-height: 300px;
   }
   .video-section__content { padding: 0 20px 36px; }
+  .video-section__center-right {
+    right: auto;
+    left: 20px;
+    max-width: calc(100% - 40px);
+  }
 
   /* Technology Featured Grid: モバイルは縦積み */
   .tech-featured {
@@ -3704,7 +3709,7 @@ a.news-card-full:hover {
 }
 
 @media (max-width: 768px) {
-  .hnj__header { padding: 12px 20px 10px; }
+  .hnj__header { padding: 55px 20px 15px; }
 }
 
 .hnj__title {
@@ -3752,7 +3757,7 @@ a.news-card-full:hover {
 }
 
 @media (max-width: 768px) {
-  .hnj__cards { flex: 0 0 200px; padding: 6px 24px 7px; gap: 10px; }
+  .hnj__cards { flex: 0 0 240px; padding: 6px 24px 20px; gap: 10px; }
 }
 
 /* Milestone カード1枚 */
@@ -3857,7 +3862,7 @@ a.news-card-full:hover {
 }
 
 @media (max-width: 768px) {
-  .hnj__updates-outer { padding: 48px 24px 8px; }
+  .hnj__updates-outer { padding: 70px 24px 8px; }
 }
 
 /* Updates 内側スクロールエリア */
