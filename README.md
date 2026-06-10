@@ -19,7 +19,7 @@
 │   ├── kaga.html
 │   └── kaga-report.html
 ├── css/
-│   └── style.css       全ページ共通スタイル
+│   └── style.css       全ページ共通スタイル（デザイン全て管理）
 ├── js/
 │   ├── main.js         Nav・言語切り替え・アニメーション等の共通JS
 │   ├── tech.js         TECH_ENTRIESデータ + technology.htmlの自動生成
@@ -212,7 +212,7 @@ const SHOW_MISSION = true;  // false にするとMissionページ・リンクが
 通常の編集・確認は `main` ブランチを使用する。
 
 ```bash
-cd ~/Desktop/emblem/homepage　←各自のディレクトリ設定
+cd ~/Desktop/emblem/homepage　"←各自のディレクトリ設定に修正"
 git checkout main
 git add .
 git commit -m "変更内容"
@@ -224,11 +224,11 @@ https://emblem-media.github.io/emblem-website/
 ---
 
 ## 本番反映（Netlify）
-GitHub Pagesで確認完了後、`main` の内容を `production` ブランチへ反映する。
+GitHub Pagesで確認完了後、上の方法でpush。そして`main` の内容を `production` ブランチへ反映する。
 
 ```bash
 
-cd ~/Desktop/emblem/homepage　←各自のディレクトリ設定
+cd ~/Desktop/emblem/homepage　"←各自のディレクトリ設定に修正"
 git checkout production
 git pull origin production
 git merge main

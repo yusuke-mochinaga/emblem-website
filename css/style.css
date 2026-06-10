@@ -24,6 +24,51 @@
    • @media (max-width: 768px) で Mobile 対応
    ============================================================ */
 
+/*
+   📍 TABLE OF CONTENTS（詳細目次）
+
+   基礎・共通
+   ├─ 27-65       Reset & Base（ブラウザリセット、CSS変数）
+   ├─ 67-125      Typography（見出し・本文スタイル）
+   ├─ 103-117     Layout（container、grid）
+   └─ 118-125     Fade-in Animation
+
+   ナビゲーション・ヒーロー
+   ├─ 126-378     Navigation（グラデーション方式）
+   ├─ 379-521     Hero（メインビジュアル）
+   └─ 956-965     Page Header（サブページ用）
+
+   ビデオ・メディア
+   ├─ 522-602     Video Section（フルスクリーン動画bg）
+   └─ 1770-1904   Responsive（タブレット・モバイル調整）
+
+   テックセクション
+   ├─ 603-657     Tech Section Home（グリッド形式）
+   ├─ 966-1361    Technology Page（スクロール形式）
+   ├─ 1362-1447   Home — Tech セクション各版
+   ├─ 1905-2236   Tech Page フルスクリーン版
+   ├─ 2237-2614   Home Tech v2（スクロール移動版）
+   ├─ 2699-3105   Home Tech グリッド版
+   └─ 3106-3266   Home Tech フルスクリーン版
+
+   ニュース・更新情報
+   ├─ 658-684     News Carousel（Home用）
+   ├─ 685-802     News Card（共通スタイル）
+   ├─ 1448-1597   News Page（詳細ページ）
+   ├─ 3556-3571   News Card — aタグ化対応
+   ├─ 3572-3692   News 個別ページ
+   ├─ 3693-4060   Home — News セクション（Milestones+Updates）
+   └─ 4061-4228   News Page — Milestones + Updates 構成
+
+   ページセクション
+   ├─ 803-849     Recruit Section（Home）
+   ├─ 850-955     Footer
+   ├─ 1598-1769   Recruit Page（採用ページ）
+   ├─ 3267-3445   Mission ページ
+   └─ 3446-3555   Hero — リニューアル版
+
+   ============================================================ */
+
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
