@@ -208,9 +208,49 @@ const SHOW_MISSION = true;  // false にするとMissionページ・リンクが
 ---
 
 ## デプロイ
+### GitHub Pages（確認用）
+通常の編集・確認は `main` ブランチを使用する。
 
-GitHubのmainブランチにpushすると、Netlifyが自動でデプロイする。
-本番URL: https://emblemand.com
+```bash
+cd ~/Desktop/emblem/homepage　←各自のディレクトリ設定
+git checkout main
+git add .
+git commit -m "変更内容"
+git push origin main
+
+```
+確認URL
+https://emblem-media.github.io/emblem-website/
+---
+
+## 本番反映（Netlify）
+GitHub Pagesで確認完了後、`main` の内容を `production` ブランチへ反映する。
+
+```bash
+
+cd ~/Desktop/emblem/homepage　←各自のディレクトリ設定
+git checkout production
+git pull origin production
+git merge main
+git push origin production
+git checkout main
+
+```
+反映先
+https://emblemandnew.netlify.app/
+
+---
+## ブランチ運用
+
+main
+- 開発用
+- GitHub Pagesで確認
+- Netlifyへは反映されない
+
+production
+- 本番用
+- Netlifyが監視
+- pushすると自動デプロイ
 
 ---
 
