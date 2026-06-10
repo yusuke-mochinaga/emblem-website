@@ -210,9 +210,10 @@ const SHOW_MISSION = true;  // false にするとMissionページ・リンクが
 ## デプロイ
 ### GitHub Pages（確認用）
 通常の編集・確認は `main` ブランチを使用する。
+ディレクトリ（cd ...）は各自の設定に変更する。
 
 ```bash
-cd ~/Desktop/emblem/homepage　"←各自のディレクトリ設定に修正"
+cd ~/Desktop/emblem/homepage　
 git checkout main
 git add .
 git commit -m "変更内容"
@@ -225,10 +226,11 @@ https://emblem-media.github.io/emblem-website/
 
 ## 本番反映（Netlify）
 GitHub Pagesで確認完了後、上の方法でpush。そして`main` の内容を `production` ブランチへ反映する。
+ディレクトリ（cd ...）は各自の設定に変更する。
 
 ```bash
 
-cd ~/Desktop/emblem/homepage　"←各自のディレクトリ設定に修正"
+cd ~/Desktop/emblem/homepage
 git checkout production
 git pull origin production
 git merge main
